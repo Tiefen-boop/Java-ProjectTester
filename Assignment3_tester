@@ -98,13 +98,21 @@ public class Test {
     }
 
     private static BigInteger twoToThePowerOfN (int n){
+        byte[] bits;
         byte activeBit = 1;
         int count = 1 + (n / 8);
         for (int i = 0; i < n%8; i++) {
             activeBit *= 2;
         }
-        byte[] bits = new byte[count];
-        bits[0] = activeBit;
+        if (activeBit < 0) {
+            count += 1;
+            bits = new byte[count];
+            bits[1] = activeBit;
+        }
+        else {
+            bits = new byte[count];
+            bits[0] = activeBit;
+        }
         return new BigInteger(bits);
     }
 }
