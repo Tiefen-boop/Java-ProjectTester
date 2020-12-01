@@ -2,6 +2,7 @@ import java.math.BigInteger;
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
+    System.out.println("hello miri");
         //runAllTests();    //Runs all the tests
         //testQ1E1();       //Runs tests for 1.1
         //testQ1E2();       //Runs tests for 1.2
