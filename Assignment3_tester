@@ -2,7 +2,6 @@ import java.math.BigInteger;
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
-        System.out.println("hallo");
     }
     public static void testQ1E1 (){
         boolean passed = true;
@@ -36,8 +35,8 @@ public class Test {
         BigInteger input;
         boolean output;
         boolean expectedOutput;
-        String[] inputs = {"274876858367", "4398042316799", "35742549198872617291353508656626642567"};
-        boolean[] expectedOutputs = {true, true, true};
+        String[] inputs = {"274876858367", "4398042316799", "313526125681","5915587277"};
+        boolean[] expectedOutputs = {true, true, false, true};
         for (int i = 0; i < inputs.length; i++) {
             input = new BigInteger(inputs[i]);  //input
             expectedOutput = expectedOutputs[i];    //expected result
