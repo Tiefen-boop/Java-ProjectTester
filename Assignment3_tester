@@ -156,7 +156,7 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-
+    
     private static void testQ2E3() {
         int[][] inputs = {{2, 3}, {3, 7, 8, 9, 12}, {3, 7, 8, 9, 12, 13, 17, 19, 21, 26, 38}, {7, 8, 9, 12, 13, 17, 19, 21, 26, 38}};
         int[] inputs2 = {3, 165, 165, 165};
@@ -172,5 +172,121 @@ public class Test {
                 System.out.println("Nothing should have been printed above this line");
             }
         }
+    }
+    
+    private static void testQ2E4 (){
+        boolean passed = true;
+        int[] input;
+        int input2;
+        int input3;
+        int output;
+        int expectedOutput;
+        int[][] inputs = {{1,2,3}, {5,10,20,50,100}, {5,10,50}};
+        int[] inputs2 = {4, 100, 65};
+        int[] inputs3 = {2, 5, 2};
+        int[] expectedOutputs = {2, 3, 0};
+        for (int i = 0; i < inputs.length; i++) {
+            input = inputs[i];  //input
+            input2 = inputs2[i];
+            input3 = inputs3[i];
+            expectedOutput = expectedOutputs[i];    //expected result
+            output = Part2_Change.countChangeLimited(input, input2, input3);
+            if (output != expectedOutput){
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(input) +" , " + input2 +" , " + input3);
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+
+    private static void testQ3E2 (){
+        boolean passed = true;
+        Bit input;
+        int output;
+        int expectedOutput;
+        boolean[] inputs = {false, true};
+        int[] expectedOutputs = {0,1};
+        for (int i = 0; i < inputs.length; i++) {
+            input = new Bit(inputs[i]);  //input
+            expectedOutput = expectedOutputs[i];    //expected result
+            output = input.toInt();
+            if (output != expectedOutput){
+                passed = false;
+                System.out.println("Failed on input: " + input);
+                System.out.println("Expected output: " + expectedOutput + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E3 (){
+        boolean passed = true;
+        Bit input;
+        String output;
+        String expectedOutput;
+        boolean[] inputs = {false, true};
+        String[] expectedOutputs = {"0","1"};
+        for (int i = 0; i < inputs.length; i++) {
+            input = new Bit(inputs[i]);  //input
+            expectedOutput = expectedOutputs[i];    //expected result
+            output = input.toString();
+            if (output != expectedOutput){
+                passed = false;
+                System.out.println("Failed on input: " + input);
+                System.out.println("Expected output: " + expectedOutput + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E5 (){
+        boolean passed = true;
+        NumberAsBits input;
+        Bit[] bits = {new Bit(true),new Bit(false),new Bit(false),new Bit(false)};
+        String output;
+        String expectedOutput;
+        boolean[] inputs = {};
+        String[] expectedOutputs = {"8","8"};
+        for (int i = 0; i < inputs.length; i++) {
+            input = new NumberAsBits(bits);  //input
+            expectedOutput = expectedOutputs[i];    //expected result
+            output = input.toString();
+            if (output != expectedOutput){
+                passed = false;
+                System.out.println("Failed on input: " + input);
+                System.out.println("Expected output: " + expectedOutput + " But output was: " + output);
+            }
+            bits[1] = new Bit(true);
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E6 (){
+        boolean passed = true;
+        NumberAsBits input;
+        Bit[] bits = {new Bit(true),new Bit(false),new Bit(false),new Bit(false)};
+        String output;
+        String expectedOutput;
+        boolean[] inputs = {};
+        String[] expectedOutputs = {"1000","1000"};
+        for (int i = 0; i < inputs.length; i++) {
+            input = new NumberAsBits(bits);  //input
+            expectedOutput = expectedOutputs[i];    //expected result
+            output = input.base2();
+            if (output != expectedOutput){
+                passed = false;
+                System.out.println("Failed on input: " + input);
+                System.out.println("Expected output: " + expectedOutput + " But output was: " + output);
+            }
+            bits[1] = new Bit(true);
+        }
+        if (passed)
+            System.out.println("Passed all tests");
     }
 }
