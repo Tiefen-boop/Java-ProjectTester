@@ -8,7 +8,7 @@ public class Test {
         //testQ1E3();       //Runs tests for 1.3
         //testQ1E4();       //Runs tests for 1.4, needs parameter n to run n times
     }
-
+ryey
     private static void runAllTests() {
         System.out.println("Testing 1.1: ");
         testQ1E1();
