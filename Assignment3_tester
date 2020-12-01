@@ -2,8 +2,30 @@ import java.math.BigInteger;
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
+        //runAllTests();    //Runs all the tests
+        //testQ1E1();       //Runs tests for 1.1
+        //testQ1E2();       //Runs tests for 1.2
+        //testQ1E3();       //Runs tests for 1.3
+        //testQ1E4();       //Runs tests for 1.4, needs parameter n to run n times
     }
-    public static void testQ1E1 (){
+
+    private static void runAllTests() {
+        System.out.println("Testing 1.1: ");
+        testQ1E1();
+        System.out.println();
+        System.out.println("Testing 1.2: ");
+        testQ1E2();
+        System.out.println();
+        System.out.println("Testing 1.3: ");
+        testQ1E3();
+        System.out.println();
+        int n = 2 + (int)(Math.random()*5);
+        System.out.println("Testing 1.4 " + n + " times: ");
+        testQ1E4(n);
+        System.out.println();
+    }
+
+    private static void testQ1E1 (){
         boolean passed = true;
         BigInteger input;
         BigInteger output;
@@ -24,18 +46,18 @@ public class Test {
             System.out.println("Passed all tests");
     }
 
-    public static void testQ1E2 (){
+    private static void testQ1E2 (){
         int n = (int) (Math.random()*11);
         System.out.println("Expected " + n + " random integers");
         Part1_BigInteger.printRandoms(n);
     }
 
-    public static void testQ1E3 (){
+    private static void testQ1E3 (){
         boolean passed = true;
         BigInteger input;
         boolean output;
         boolean expectedOutput;
-        String[] inputs = {"274876858367", "4398042316799", "313526125681","5915587277"};
+        String[] inputs = {"274876858367", "4398042316799", "3576702497","5915587277"};
         boolean[] expectedOutputs = {true, true, false, true};
         for (int i = 0; i < inputs.length; i++) {
             input = new BigInteger(inputs[i]);  //input
@@ -49,5 +71,40 @@ public class Test {
         }
         if (passed)
             System.out.println("Passed all tests");
+    }
+
+    private static void testQ1E4 (int timesToTest){
+        boolean passed = true;
+        BigInteger bi, twoToThePowerOfN;
+        for (int i = 0; i < timesToTest; i++) {
+            int n = 2+ (int) (Math.random()*31) ;
+            twoToThePowerOfN = twoToThePowerOfN(n);
+            bi = Part1_BigInteger.randomPrime(n);
+            if (!Part1_BigInteger.isPrime(bi)){
+                passed = false;
+                System.out.println("Failed: The returned number " +bi + " isn't prime according to your function Part1_BigInteger.isPrime");
+            }
+            if (bi.compareTo(twoToThePowerOfN) != -1){
+                passed = false;
+                System.out.println("Failed: The returned number " +bi + " isn't smaller than 2^" + n + "=" + twoToThePowerOfN);
+            }
+            if (bi.compareTo(BigInteger.ONE) != 1){
+                passed = false;
+                System.out.println("Failed: The returned number " +bi + " isn't bigger than 1");
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static BigInteger twoToThePowerOfN (int n){
+        byte activeBit = 1;
+        int count = 1 + (n / 8);
+        for (int i = 0; i < n%8; i++) {
+            activeBit *= 2;
+        }
+        byte[] bits = new byte[count];
+        bits[0] = activeBit;
+        return new BigInteger(bits);
     }
 }
