@@ -2,15 +2,15 @@ import java.math.BigInteger;
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
-        testQ1E1();
+        
     }
     public static void testQ1E1 (){
+        boolean passed = true;
         BigInteger input;
         BigInteger output;
         BigInteger expectedOutput;
         String[] inputs = {"-10", "0", "7", "99999"};
         String[] expectedOutputs = {"0", "0", "21", "4999850001"};
-        boolean passed = true;
         for (int i = 0; i < inputs.length; i++) {
             input = new BigInteger(inputs[i]);  //input
             expectedOutput = new BigInteger(expectedOutputs[i]);    //expected result
@@ -19,6 +19,33 @@ public class Test {
                 passed = false;
                 System.out.println("Failed on input: " + inputs[i]);
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output.toString());
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    public static void testQ1E2 (){
+        int n = (int) (Math.random()*11);
+        System.out.println("Expected " + n + " random integers");
+        Part1_BigInteger.printRandoms(n);
+    }
+
+    public static void testQ1E3 (){
+        boolean passed = true;
+        BigInteger input;
+        boolean output;
+        boolean expectedOutput;
+        String[] inputs = {"274876858367", "4398042316799", "35742549198872617291353508656626642567"};
+        boolean[] expectedOutputs = {true, true, true};
+        for (int i = 0; i < inputs.length; i++) {
+            input = new BigInteger(inputs[i]);  //input
+            expectedOutput = expectedOutputs[i];    //expected result
+            output = Part1_BigInteger.isPrime(input);
+            if (output != expectedOutput){
+                passed = false;
+                System.out.println("Failed on input: " + inputs[i]);
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
         if (passed)
