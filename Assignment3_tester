@@ -12,6 +12,8 @@ public class Test {
         //testQ2E2();       //Runs tests for 2.2
         //testQ2E3();       //Runs tests for 2.3
         //testQ2E6();       //Runs tests for 2.6
+        //testQ3E5();       //Runs tests for 3.5
+        //testQ3E6();       //Runs tests for 3.6
     }
 
     private static void runAllTests() {
@@ -267,21 +269,25 @@ public class Test {
     private static void testQ3E5 (){
         boolean passed = true;
         NumberAsBits input;
-        Bit[] bits = {new Bit(true),new Bit(false),new Bit(false),new Bit(false)};
+        Bit[][] bits = {{new Bit(false)},
+        		{new Bit(true)},
+        		{new Bit(true),new Bit(true)},
+        		{new Bit(true),new Bit(false),new Bit(false),new Bit(false)},
+        		{new Bit(true),new Bit(true),new Bit(false),new Bit(false)},
+        		{new Bit(true),new Bit(true),new Bit(false),new Bit(true)}};
         String output;
         String expectedOutput;
-        boolean[] inputs = {};
-        String[] expectedOutputs = {"8","8"};
-        for (int i = 0; i < inputs.length; i++) {
-            input = new NumberAsBits(bits);  //input
+
+        String[] expectedOutputs = {"0","1","3","8","12","13"};
+        for (int i = 0; i < expectedOutputs.length; i++) {
+            input = new NumberAsBits(bits[i]);  //input
             expectedOutput = expectedOutputs[i];    //expected result
             output = input.toString();
-            if (output != expectedOutput){
+            if (output.compareTo(expectedOutput) != 0){
                 passed = false;
                 System.out.println("Failed on input: " + input);
                 System.out.println("Expected output: " + expectedOutput + " But output was: " + output);
             }
-            bits[1] = new Bit(true);
         }
         if (passed)
             System.out.println("Passed all tests");
@@ -290,21 +296,24 @@ public class Test {
     private static void testQ3E6 (){
         boolean passed = true;
         NumberAsBits input;
-        Bit[] bits = {new Bit(true),new Bit(false),new Bit(false),new Bit(false)};
+        Bit[][] bits = {{new Bit(false)},
+        		{new Bit(true)},
+        		{new Bit(true),new Bit(true)},
+        		{new Bit(true),new Bit(false),new Bit(false),new Bit(false)},
+        		{new Bit(true),new Bit(true),new Bit(false),new Bit(false)},
+        		{new Bit(true),new Bit(true),new Bit(false),new Bit(true)}};
         String output;
         String expectedOutput;
-        boolean[] inputs = {};
-        String[] expectedOutputs = {"1000","1000"};
-        for (int i = 0; i < inputs.length; i++) {
-            input = new NumberAsBits(bits);  //input
+        String[] expectedOutputs = {"0","1","11","1000","1100","1101"};
+        for (int i = 0; i < expectedOutputs.length; i++) {
+        	input = new NumberAsBits(bits[i]);  //input
             expectedOutput = expectedOutputs[i];    //expected result
             output = input.base2();
-            if (output != expectedOutput){
+            if (output.compareTo(expectedOutput) != 0){
                 passed = false;
                 System.out.println("Failed on input: " + input);
                 System.out.println("Expected output: " + expectedOutput + " But output was: " + output);
-            }
-            bits[1] = new Bit(true);
+            }       
         }
         if (passed)
             System.out.println("Passed all tests");
