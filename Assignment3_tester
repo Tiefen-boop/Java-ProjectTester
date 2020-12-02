@@ -1,4 +1,4 @@
-//version 0.9.1
+//version 0.9.2
 import java.math.BigInteger;
 import java.util.*;
 public class Test {
@@ -180,19 +180,22 @@ public class Test {
     }
 
     private static void testQ2E3() {
-        int[][] inputs = {{2, 3}, {2, 3}, {3, 7, 8, 9, 12}, {3, 7, 8, 9, 12, 13, 17, 19, 21, 26, 38}, {7, 8, 9, 12, 13, 17, 19, 21, 26, 38}};
-        int[] inputs2 = {2, 3, 165, 165, 165};
-        int[] inputs3 = {1, 1, 15, 54, 23};
+        int[][] inputs = {{2, 3}, {2, 3}, {3, 7, 8, 9, 12}, {3, 7, 8, 9, 12, 13, 17, 19, 21, 26, 38}, {7, 8, 9, 12, 13, 17, 19, 21, 26, 38}, {2, 3}};
+        int[] inputs2 = {3, 2, 165, 165, 165, 2};
+        int[] inputs3 = {1, 1, 15, 54, 23, 1};
+        boolean[] expectedOutputs = {true, true, true, false, true, true};
         for (int i = 0; i < inputs.length; i++) {
-            if (Part1_Change.changeLimited(inputs[i], inputs2[i], inputs3[i])) {
+            if (expectedOutputs[i]) {
+                System.out.println("A solution should be printed:");
                 Part1_Change.printChangeLimited(inputs[i], inputs2[i], inputs3[i]);
                 System.out.println("Check if the sum of the printed sequence =" + inputs2[i] + ", that there is no ',' at the end, no spaces AND that it is sorted");
             }
             else {
-                System.out.println();
+                System.out.println("No solution should be printed:");
                 Part1_Change.printChangeLimited(inputs[i], inputs2[i], inputs3[i]);
-                System.out.println("Nothing should have been printed above this line");
+                System.out.println("If a sequence has been printed your code is defective");
             }
+            System.out.println();
         }
     }
 
