@@ -1,4 +1,4 @@
-//version 0.8
+//version 0.8.1
 import java.math.BigInteger;
 import java.util.*;
 public class Test {
@@ -11,10 +11,12 @@ public class Test {
         //testQ2E1();       //Runs tests for 2.1
         //testQ2E2();       //Runs tests for 2.2
         //testQ2E3();       //Runs tests for 2.3
+        //testQ2E4();       //Runs tests for 2.4
         //testQ2E6();       //Runs tests for 2.6
     }
 
     private static void runAllTests() {
+        //Part A
         System.out.println("Testing 1.1: ");
         testQ1E1();
         System.out.println();
@@ -36,6 +38,10 @@ public class Test {
         System.out.println();
         System.out.println("Testing 2.3: ");
         testQ2E3();
+        System.out.println();
+        //Part B
+        System.out.println("Testing 2.6: ");
+        testQ2E4();
         System.out.println();
         System.out.println("Testing 2.6: ");
         testQ2E6();
@@ -160,7 +166,7 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ2E3() {
         int[][] inputs = {{2, 3}, {3, 7, 8, 9, 12}, {3, 7, 8, 9, 12, 13, 17, 19, 21, 26, 38}, {7, 8, 9, 12, 13, 17, 19, 21, 26, 38}};
         int[] inputs2 = {3, 165, 165, 165};
@@ -177,27 +183,19 @@ public class Test {
             }
         }
     }
-    
+
     private static void testQ2E4 (){
         boolean passed = true;
-        int[] input;
-        int input2;
-        int input3;
         int output;
-        int expectedOutput;
         int[][] inputs = {{1,2,3}, {5,10,20,50,100}, {5,10,50}};
         int[] inputs2 = {4, 100, 65};
         int[] inputs3 = {2, 5, 2};
         int[] expectedOutputs = {2, 3, 0};
         for (int i = 0; i < inputs.length; i++) {
-            input = inputs[i];  //input
-            input2 = inputs2[i];
-            input3 = inputs3[i];
-            expectedOutput = expectedOutputs[i];    //expected result
-            output = Part2_Change.countChangeLimited(input, input2, input3);
-            if (output != expectedOutput){
+            output = Part2_Change.countChangeLimited(inputs[i], inputs2[i], inputs3[i]);
+            if (output != expectedOutputs[i]){
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(input) +" , " + input2 +" , " + input3);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]) +" , " + inputs2[i] +" , " + inputs3[i]);
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -221,7 +219,7 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ3E2 (){
         boolean passed = true;
         Bit input;
@@ -268,11 +266,11 @@ public class Test {
         boolean passed = true;
         NumberAsBits input;
         Bit[][] bits = {{new Bit(false)},
-        		{new Bit(true)},
-        		{new Bit(true),new Bit(true)},
-        		{new Bit(true),new Bit(false),new Bit(false),new Bit(false)},
-        		{new Bit(true),new Bit(true),new Bit(false),new Bit(false)},
-        		{new Bit(true),new Bit(true),new Bit(false),new Bit(true)}};
+                {new Bit(true)},
+                {new Bit(true),new Bit(true)},
+                {new Bit(true),new Bit(false),new Bit(false),new Bit(false)},
+                {new Bit(true),new Bit(true),new Bit(false),new Bit(false)},
+                {new Bit(true),new Bit(true),new Bit(false),new Bit(true)}};
 
         String[] expectedOutputs = {"0","1","3","8","12","13"};
         for (int i = 0; i < expectedOutputs.length; i++) {
@@ -291,21 +289,21 @@ public class Test {
         boolean passed = true;
         NumberAsBits input;
         Bit[][] bits = {{new Bit(false)},
-        		{new Bit(true)},
-        		{new Bit(true),new Bit(true)},
-        		{new Bit(true),new Bit(false),new Bit(false),new Bit(false)},
-        		{new Bit(true),new Bit(true),new Bit(false),new Bit(false)},
-        		{new Bit(true),new Bit(true),new Bit(false),new Bit(true)}};
+                {new Bit(true)},
+                {new Bit(true),new Bit(true)},
+                {new Bit(true),new Bit(false),new Bit(false),new Bit(false)},
+                {new Bit(true),new Bit(true),new Bit(false),new Bit(false)},
+                {new Bit(true),new Bit(true),new Bit(false),new Bit(true)}};
 
         String[] expectedOutputs = {"0","1","11","1000","1100","1101"};
         for (int i = 0; i < expectedOutputs.length; i++) {
-        	input = new NumberAsBits(bits[i]);  //input
-  
+            input = new NumberAsBits(bits[i]);  //input
+
             if (!input.base2().equals(expectedOutputs[i])){
                 passed = false;
                 System.out.println("Failed on input: " + input);
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + input.base2());
-            }       
+            }
         }
         if (passed)
             System.out.println("Passed all tests");
