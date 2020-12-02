@@ -1,4 +1,4 @@
-//version 0.9.2
+//version 0.9.3
 import java.math.BigInteger;
 import java.util.*;
 public class Test {
@@ -219,8 +219,6 @@ public class Test {
     }
 
     private static void testQ2E5 (){
-        boolean passed = true;
-        int output;
         int[][] inputs = {{1,2,3}, {5,10,20,50,100}, {5,10,50}};
         int[] inputs2 = {4, 100, 65};
         int[] inputs3 = {2, 5, 2};
@@ -232,8 +230,6 @@ public class Test {
             System.out.println("if the sum of each printed sequences =" + inputs2[i] + " , that there is no ',' at the end, no spaces AND that it is sorted");
             System.out.println();
         }
-        if (passed)
-            System.out.println("Passed all tests");
     }
 
     private static void testQ2E6() {
