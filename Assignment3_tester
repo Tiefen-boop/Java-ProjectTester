@@ -1,4 +1,4 @@
-//version 1.0.2
+//version 1.0.3
 import java.math.BigInteger;
 import java.util.*;
 public class Test {
@@ -313,8 +313,9 @@ public class Test {
                 {new Bit(true), new Bit(false), new Bit(false), new Bit(false)},
                 {new Bit(true), new Bit(true), new Bit(false), new Bit(false)},
                 {new Bit(true), new Bit(true), new Bit(false), new Bit(true)},
-                {new Bit(true), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false)}};
-        String[] expectedOutputs = {"", "0", "1", "3", "3", "8", "12", "13", "4294967296"};
+                {new Bit(true), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false)},
+                {new Bit(true), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false),new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false), new Bit(false)}};
+        String[] expectedOutputs = {"", "0", "1", "3", "3", "8", "12", "13", "4294967296","36893488147419103232"};
         for (int i = 0; i < expectedOutputs.length; i++) {
             input = new NumberAsBits(inputs[i]);  //input
             if (!input.toString().equals(expectedOutputs[i])) {
