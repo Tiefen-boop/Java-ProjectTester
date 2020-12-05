@@ -1,4 +1,4 @@
-//version 1.0.3
+//version 1.0.4
 import java.math.BigInteger;
 import java.util.*;
 public class Test {
@@ -69,10 +69,10 @@ public class Test {
         testQ3E3();
         System.out.println();
         System.out.println("Testing 3.5: ");
-        testQ3E3();
+        testQ3E5();
         System.out.println();
         System.out.println("Testing 3.6: ");
-        testQ3E3();
+        testQ3E6();
         System.out.println();
     }
 
