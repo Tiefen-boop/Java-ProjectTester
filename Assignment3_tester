@@ -1,4 +1,4 @@
-//version 1.0.5
+//version 1.0.6
 import java.math.BigInteger;
 import java.util.*;
 public class Test {
@@ -102,8 +102,8 @@ public class Test {
     private static void testQ1E3() {
         boolean passed = true;
         boolean output;
-        String[] inputs = {"274876858367", "4398042316799", "3576702497", "5915587277"};
-        boolean[] expectedOutputs = {true, true, false, true};
+        String[] inputs = {"0","1", "2", "274876858367", "4398042316799", "3576702497", "5915587277"};
+        boolean[] expectedOutputs = {false, false, true, true, true, false, true};
         for (int i = 0; i < inputs.length; i++) {
             output = Part1_BigInteger.isPrime(new BigInteger(inputs[i]));
             if (output != expectedOutputs[i]) {
