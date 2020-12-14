@@ -1,4 +1,4 @@
-//version 0.4.0
+//version 0.4.5
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -15,6 +15,7 @@ public class Test {
         //testQ2E4();       //Runs tests for 2.4
         //testQ2E5a();      //Runs tests for 2.5 isReduced
         //testQ2E5b();      //Runs tests for 2.5 reduce
+        //testQ2E6();       //Runs tests for 2.6
     }
 
     private static void runAllTests() {
@@ -36,6 +37,7 @@ public class Test {
         testQ2E4();
         testQ2E5a();
         testQ2E5b();
+        testQ2E6();
     }
 
     private static void testQ1E1() {
@@ -294,6 +296,36 @@ public class Test {
             for (Bit element : inputs[i])
                 output.addFirst(element);
             output.reduce();
+            if (!output.toString().equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E6() {
+        boolean passed = true;
+        BitList bitList, output;
+        Bit[][] inputs = {{},
+                {Bit.ZERO},
+                {Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
+                {Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE}};
+        String[] expectedOutputs = {"<>", "<1>", "<10>", "<01>", "<010>", "<001>", "<000000>", "<010011>", "<1111111>", "<000111>", "<111000>"};
+        for (int i = 0; i < inputs.length; i++) {
+            bitList = new BitList();
+            for (Bit element : inputs[i])
+                bitList.addFirst(element);
+            output = bitList.complement();
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
