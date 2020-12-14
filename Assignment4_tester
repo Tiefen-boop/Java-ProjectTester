@@ -1,4 +1,4 @@
-//version 0.3.3
+//version 0.3.8
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -50,7 +50,7 @@ public class Test {
             output = Bit.fullAdderSum(inputs[i][0], inputs[i][1], inputs[i][2]);
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -74,7 +74,7 @@ public class Test {
             output = Bit.fullAdderCarry(inputs[i][0], inputs[i][1], inputs[i][2]);
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -100,7 +100,7 @@ public class Test {
                 output.addFirst(element);
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -126,7 +126,7 @@ public class Test {
                 output.addLast(element);
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -150,7 +150,7 @@ public class Test {
             output = bitList.removeFirst();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1]);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -174,7 +174,7 @@ public class Test {
             output = bitList.removeLast();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1]);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -184,7 +184,7 @@ public class Test {
 
     private static void testQ2E3() {
         boolean passed = true;
-        BitList output1, output2;
+        BitList bitList, output;
         Bit[][] inputs = {{Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ZERO, Bit.ZERO, Bit.ONE},
                 {Bit.ZERO, Bit.ONE, Bit.ZERO},
@@ -194,20 +194,19 @@ public class Test {
                 {Bit.ONE, Bit.ONE, Bit.ZERO},
                 {Bit.ONE, Bit.ONE, Bit.ONE}};
         for (int i = 0; i < inputs.length; i++) {
-            output1 = new BitList();
-            for (int j = 0; j < inputs[i].length; j++)
-                output1.addFirst(inputs[i][j]);
-            output2 = new BitList(output1);
-            if (!output1.toString().equals(output2.toString())) {
+            bitList = new BitList();
+            for (Bit element : inputs[i])
+                bitList.addFirst(element);
+            output = new BitList(bitList);
+            if (!output.equals(bitList)) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
-                System.out.println("Expected output: " + output2 + " But output was: " + output1);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output: " + bitList + " But output was: " + output);
             }
-            output1.addFirst(Bit.ZERO);
-            if (output1.toString().equals(output2.toString())) {
+            output.addFirst(Bit.ZERO);
+            if (output.equals(bitList)) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
-                System.out.println("Expected output: " + output2 + " But output was: " + output1);
+                System.out.println("Failed: Copy isn't a deep copy");
             }
         }
         if (passed)
