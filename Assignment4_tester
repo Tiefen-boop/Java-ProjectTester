@@ -1,4 +1,4 @@
-//version 0.3.9
+//version 0.4.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -13,6 +13,8 @@ public class Test {
         //testQ2E2d();      //Runs tests for 2.2 removeLast
         //testQ2E3();       //Runs tests for 2.3
         //testQ2E4();       //Runs tests for 2.4
+        //testQ2E5a();      //Runs tests for 2.5 isReduced
+        //testQ2E5b();      //Runs tests for 2.5 reduce
     }
 
     private static void runAllTests() {
@@ -32,6 +34,8 @@ public class Test {
         testQ2E2d();
         testQ2E3();
         testQ2E4();
+        testQ2E5a();
+        testQ2E5b();
     }
 
     private static void testQ1E1() {
@@ -230,6 +234,67 @@ public class Test {
                 bitList.addFirst(element);
             output = bitList.isNumber();
             if (output != expectedOutputs[i]) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E5a() {
+        boolean passed = true;
+        BitList bitList;
+        boolean output;
+        Bit[][] inputs = {{},
+                {Bit.ZERO},
+                {Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
+                {Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE}};
+        boolean[] expectedOutputs = {false, true, true, false, true, true, false, true, false, false, false};
+        for (int i = 0; i < inputs.length; i++) {
+            bitList = new BitList();
+            for (Bit element : inputs[i])
+                bitList.addFirst(element);
+            output = bitList.isReduced();
+            if (output != expectedOutputs[i]) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E5b() {
+        boolean passed = true;
+        BitList output;
+        Bit[][] inputs = {{},
+                {Bit.ZERO},
+                {Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
+                {Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE}};
+        String[] expectedOutputs = {"<>", "<0>", "<01>", "<10>", "<101>", "<110>", "<11>", "<101100>", "<0>", "<11000>", "<0111>"};
+        for (int i = 0; i < inputs.length; i++) {
+            output = new BitList();
+            for (Bit element : inputs[i])
+                output.addFirst(element);
+            output.reduce();
+            if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
