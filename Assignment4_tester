@@ -1,40 +1,44 @@
-//version 0.0.2
+//version 0.0.3
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
-        runAllTests();    //Runs all the tests
-//        testQ1E1();       //Runs tests for 1.1
-//        testQ1E2();       //Runs tests for 1.2
-//        testQ2E2a();       //Runs tests for 2.2 addFirst
-//        testQ2E2b();       //Runs tests for 2.2 addLast
-//        testQ2E2c();       //Runs tests for 2.2 removeFirst
-//        testQ2E2d();       //Runs tests for 2.2 removeLast
-//        testQ2E3();       //Runs tests for 2.3
-//        testQ2E4();       //Runs tests for 2.4
+        //runAllTests();    //Runs all the tests
+        //testQ1E1();       //Runs tests for 1.1
+        //testQ1E2();       //Runs tests for 1.2
+        //testQ2E2a();       //Runs tests for 2.2 addFirst
+        //testQ2E2b();       //Runs tests for 2.2 addLast
+        //testQ2E2c();       //Runs tests for 2.2 removeFirst
+        //testQ2E2d();       //Runs tests for 2.2 removeLast
+        //testQ2E3();       //Runs tests for 2.3
+        //testQ2E4();       //Runs tests for 2.4
     }
 
     private static void runAllTests() {
-        testQ1E1();       //Runs tests for 1.1
-        testQ1E2();       //Runs tests for 1.2
-        testQ2E2a();       //Runs tests for 2.2 addFirst
-        testQ2E2b();       //Runs tests for 2.2 addLast
-        testQ2E2c();       //Runs tests for 2.2 removeFirst
-        testQ2E2d();       //Runs tests for 2.2 removeLast
-        testQ2E3();       //Runs tests for 2.3
-        testQ2E4();       //Runs tests for 2.4
-        }
+        testPartA();
+    }
+
+    private static void testPartA() {
+        testQ1E1();
+        testQ1E2();
+        testQ2E2a();
+        testQ2E2b();
+        testQ2E2c();
+        testQ2E2d();
+        testQ2E3();
+        testQ2E4();
+    }
 
     private static void testQ1E1() {
         boolean passed = true;
         Bit output;
         Bit[][] inputs = {{Bit.ZERO,Bit.ZERO,Bit.ZERO},
-		        		{Bit.ZERO,Bit.ZERO,Bit.ONE},
-		        		{Bit.ZERO,Bit.ONE,Bit.ZERO},
-		        		{Bit.ZERO,Bit.ONE,Bit.ONE},
-		        		{Bit.ONE,Bit.ZERO,Bit.ZERO},
-		        		{Bit.ONE,Bit.ZERO,Bit.ONE},
-		        		{Bit.ONE,Bit.ONE,Bit.ZERO},
-		        		{Bit.ONE,Bit.ONE,Bit.ONE}};
+                {Bit.ZERO,Bit.ZERO,Bit.ONE},
+                {Bit.ZERO,Bit.ONE,Bit.ZERO},
+                {Bit.ZERO,Bit.ONE,Bit.ONE},
+                {Bit.ONE,Bit.ZERO,Bit.ZERO},
+                {Bit.ONE,Bit.ZERO,Bit.ONE},
+                {Bit.ONE,Bit.ONE,Bit.ZERO},
+                {Bit.ONE,Bit.ONE,Bit.ONE}};
         Bit[] expectedOutputs = {Bit.ZERO,Bit.ONE,Bit.ONE,Bit.ZERO,Bit.ONE,Bit.ZERO,Bit.ZERO,Bit.ONE};
         for (int i = 0; i < inputs.length; i++) {
             output = Bit.fullAdderSum(inputs[i][0],inputs[i][1],inputs[i][2]);
@@ -47,18 +51,18 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ1E2() {
         boolean passed = true;
         Bit output;
         Bit[][] inputs = {{Bit.ZERO,Bit.ZERO,Bit.ZERO},
-		        		{Bit.ZERO,Bit.ZERO,Bit.ONE},
-		        		{Bit.ZERO,Bit.ONE,Bit.ZERO},
-		        		{Bit.ZERO,Bit.ONE,Bit.ONE},
-		        		{Bit.ONE,Bit.ZERO,Bit.ZERO},
-		        		{Bit.ONE,Bit.ZERO,Bit.ONE},
-		        		{Bit.ONE,Bit.ONE,Bit.ZERO},
-		        		{Bit.ONE,Bit.ONE,Bit.ONE}};
+                {Bit.ZERO,Bit.ZERO,Bit.ONE},
+                {Bit.ZERO,Bit.ONE,Bit.ZERO},
+                {Bit.ZERO,Bit.ONE,Bit.ONE},
+                {Bit.ONE,Bit.ZERO,Bit.ZERO},
+                {Bit.ONE,Bit.ZERO,Bit.ONE},
+                {Bit.ONE,Bit.ONE,Bit.ZERO},
+                {Bit.ONE,Bit.ONE,Bit.ONE}};
         Bit[] expectedOutputs = {Bit.ZERO,Bit.ZERO,Bit.ZERO,Bit.ONE,Bit.ZERO,Bit.ONE,Bit.ONE,Bit.ONE};
         for (int i = 0; i < inputs.length; i++) {
             output = Bit.fullAdderCarry(inputs[i][0],inputs[i][1],inputs[i][2]);
@@ -71,23 +75,23 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ2E2a() {
         boolean passed = true;
         BitList output;
         Bit[][] inputs = {{Bit.ZERO,Bit.ZERO,Bit.ZERO},
-        		{Bit.ZERO,Bit.ZERO,Bit.ONE},
-        		{Bit.ZERO,Bit.ONE,Bit.ZERO},
-        		{Bit.ZERO,Bit.ONE,Bit.ONE},
-        		{Bit.ONE,Bit.ZERO,Bit.ZERO},
-        		{Bit.ONE,Bit.ZERO,Bit.ONE},
-        		{Bit.ONE,Bit.ONE,Bit.ZERO},
-        		{Bit.ONE,Bit.ONE,Bit.ONE}};
+                {Bit.ZERO,Bit.ZERO,Bit.ONE},
+                {Bit.ZERO,Bit.ONE,Bit.ZERO},
+                {Bit.ZERO,Bit.ONE,Bit.ONE},
+                {Bit.ONE,Bit.ZERO,Bit.ZERO},
+                {Bit.ONE,Bit.ZERO,Bit.ONE},
+                {Bit.ONE,Bit.ONE,Bit.ZERO},
+                {Bit.ONE,Bit.ONE,Bit.ONE}};
         String[] expectedOutputs = {"<000>","<001>","<010>","<011>","<100>","<101>","<110>","<111>"};
         for (int i = 0; i < inputs.length; i++) {
-        	output = new BitList();
+            output = new BitList();
             for(int j=0; j<inputs[i].length;j++)
-            	output.addFirst(inputs[i][j]);
+                output.addFirst(inputs[i][j]);
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
                 System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
@@ -97,23 +101,23 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ2E2b() {
         boolean passed = true;
         BitList output;
         Bit[][] inputs = {{Bit.ZERO,Bit.ZERO,Bit.ZERO},
-        		{Bit.ZERO,Bit.ZERO,Bit.ONE},
-        		{Bit.ZERO,Bit.ONE,Bit.ZERO},
-        		{Bit.ZERO,Bit.ONE,Bit.ONE},
-        		{Bit.ONE,Bit.ZERO,Bit.ZERO},
-        		{Bit.ONE,Bit.ZERO,Bit.ONE},
-        		{Bit.ONE,Bit.ONE,Bit.ZERO},
-        		{Bit.ONE,Bit.ONE,Bit.ONE}};
+                {Bit.ZERO,Bit.ZERO,Bit.ONE},
+                {Bit.ZERO,Bit.ONE,Bit.ZERO},
+                {Bit.ZERO,Bit.ONE,Bit.ONE},
+                {Bit.ONE,Bit.ZERO,Bit.ZERO},
+                {Bit.ONE,Bit.ZERO,Bit.ONE},
+                {Bit.ONE,Bit.ONE,Bit.ZERO},
+                {Bit.ONE,Bit.ONE,Bit.ONE}};
         String[] expectedOutputs = {"<000>","<100>","<010>","<110>","<001>","<101>","<011>","<111>"};
         for (int i = 0; i < inputs.length; i++) {
-        	output = new BitList();
+            output = new BitList();
             for(int j=0; j<inputs[i].length;j++)
-            	output.addLast(inputs[i][j]);
+                output.addLast(inputs[i][j]);
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
                 System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
@@ -123,23 +127,23 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ2E2c() {
         boolean passed = true;
         BitList output;
         Bit[][] inputs = {{Bit.ZERO,Bit.ZERO,Bit.ZERO},
-        		{Bit.ZERO,Bit.ZERO,Bit.ONE},
-        		{Bit.ZERO,Bit.ONE,Bit.ZERO},
-        		{Bit.ZERO,Bit.ONE,Bit.ONE},
-        		{Bit.ONE,Bit.ZERO,Bit.ZERO},
-        		{Bit.ONE,Bit.ZERO,Bit.ONE},
-        		{Bit.ONE,Bit.ONE,Bit.ZERO},
-        		{Bit.ONE,Bit.ONE,Bit.ONE}};
+                {Bit.ZERO,Bit.ZERO,Bit.ONE},
+                {Bit.ZERO,Bit.ONE,Bit.ZERO},
+                {Bit.ZERO,Bit.ONE,Bit.ONE},
+                {Bit.ONE,Bit.ZERO,Bit.ZERO},
+                {Bit.ONE,Bit.ZERO,Bit.ONE},
+                {Bit.ONE,Bit.ONE,Bit.ZERO},
+                {Bit.ONE,Bit.ONE,Bit.ONE}};
         String[] expectedOutputs = {"<00>","<00>","<01>","<01>","<10>","<10>","<11>","<11>"};
         for (int i = 0; i < inputs.length; i++) {
-        	output = new BitList();
+            output = new BitList();
             for(int j=0; j<inputs[i].length;j++)
-            	output.addFirst(inputs[i][j]);
+                output.addFirst(inputs[i][j]);
             output.removeFirst();
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
@@ -150,23 +154,23 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ2E2d() {
         boolean passed = true;
         BitList output;
         Bit[][] inputs = {{Bit.ZERO,Bit.ZERO,Bit.ZERO},
-        		{Bit.ZERO,Bit.ZERO,Bit.ONE},
-        		{Bit.ZERO,Bit.ONE,Bit.ZERO},
-        		{Bit.ZERO,Bit.ONE,Bit.ONE},
-        		{Bit.ONE,Bit.ZERO,Bit.ZERO},
-        		{Bit.ONE,Bit.ZERO,Bit.ONE},
-        		{Bit.ONE,Bit.ONE,Bit.ZERO},
-        		{Bit.ONE,Bit.ONE,Bit.ONE}};
+                {Bit.ZERO,Bit.ZERO,Bit.ONE},
+                {Bit.ZERO,Bit.ONE,Bit.ZERO},
+                {Bit.ZERO,Bit.ONE,Bit.ONE},
+                {Bit.ONE,Bit.ZERO,Bit.ZERO},
+                {Bit.ONE,Bit.ZERO,Bit.ONE},
+                {Bit.ONE,Bit.ONE,Bit.ZERO},
+                {Bit.ONE,Bit.ONE,Bit.ONE}};
         String[] expectedOutputs = {"<00>","<01>","<10>","<11>","<00>","<01>","<10>","<11>"};
         for (int i = 0; i < inputs.length; i++) {
-        	output = new BitList();
+            output = new BitList();
             for(int j=0; j<inputs[i].length;j++)
-            	output.addFirst(inputs[i][j]);
+                output.addFirst(inputs[i][j]);
             output.removeLast();
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
@@ -177,55 +181,54 @@ public class Test {
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ2E3() {
         boolean passed = true;
         BitList output1,output2;
         Bit[][] inputs = {{Bit.ZERO,Bit.ZERO,Bit.ZERO},
-        		{Bit.ZERO,Bit.ZERO,Bit.ONE},
-        		{Bit.ZERO,Bit.ONE,Bit.ZERO},
-        		{Bit.ZERO,Bit.ONE,Bit.ONE},
-        		{Bit.ONE,Bit.ZERO,Bit.ZERO},
-        		{Bit.ONE,Bit.ZERO,Bit.ONE},
-        		{Bit.ONE,Bit.ONE,Bit.ZERO},
-        		{Bit.ONE,Bit.ONE,Bit.ONE}};
+                {Bit.ZERO,Bit.ZERO,Bit.ONE},
+                {Bit.ZERO,Bit.ONE,Bit.ZERO},
+                {Bit.ZERO,Bit.ONE,Bit.ONE},
+                {Bit.ONE,Bit.ZERO,Bit.ZERO},
+                {Bit.ONE,Bit.ZERO,Bit.ONE},
+                {Bit.ONE,Bit.ONE,Bit.ZERO},
+                {Bit.ONE,Bit.ONE,Bit.ONE}};
         for (int i = 0; i < inputs.length; i++) {
-        	output1 = new BitList();
+            output1 = new BitList();
             for(int j=0; j<inputs[i].length;j++)
-            	output1.addFirst(inputs[i][j]);
+                output1.addFirst(inputs[i][j]);
             output2 = new BitList(output1);
             if (!output1.toString().equals(output2.toString())) {
                 passed = false;
                 System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
                 System.out.println("Expected output: " + output2 + " But output was: " + output1);
             }
-        	output1.addFirst(Bit.ZERO);
-	        if (output1.toString().equals(output2.toString())) {
-	            passed = false;
-	            System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
-	            System.out.println("Expected output: " + output2 + " But output was: " + output1);
-	        }
+            output1.addFirst(Bit.ZERO);
+            if (output1.toString().equals(output2.toString())) {
+                passed = false;
+                System.out.println("Failed on input: " + inputs[i][0] + inputs[i][1] + inputs[i][2]);
+                System.out.println("Expected output: " + output2 + " But output was: " + output1);
+            }
         }
         if (passed)
             System.out.println("Passed all tests");
     }
-    
+
     private static void testQ2E4() {
         boolean passed = true;
         BitList output;
         Bit[] inputs ={Bit.ZERO,Bit.ZERO,Bit.ONE,Bit.ONE,Bit.ZERO};
         Boolean[] expectedOutputs = {false,true,true,false,true,true};
-    	output = new BitList();
+        output = new BitList();
         for (int i = 0; i < inputs.length; i++) {
             if (output.isNumber() != (expectedOutputs[i])) {
                 passed = false;
                 System.out.println("Failed on input: " + output.toString());
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output.isNumber());
             }
-        	output.addLast(inputs[i]);
+            output.addLast(inputs[i]);
         }
         if (passed)
             System.out.println("Passed all tests");
     }
-    
 }
