@@ -1,4 +1,4 @@
-//version 0.5.5
+//version 0.6.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -18,6 +18,7 @@ public class Test {
         //testQ2E6();       //Runs tests for 2.6
         //testQ2E7a();      //Runs tests for 2.7 shiftRight
         //testQ2E7b();      //Runs tests for 2.7 shiftLeft
+        //testQ2E8();       //Runs tests for 2.8
     }
 
     private static void runAllTests() {
@@ -42,6 +43,7 @@ public class Test {
         testQ2E6();
         testQ2E7a();
         testQ2E7b();
+        testQ2E8();
     }
 
     private static void testQ1E1() {
@@ -467,6 +469,43 @@ public class Test {
                 passed = false;
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output after 3 left shifts: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E8() {
+        boolean passed = true;
+        BitList output;
+        Bit[][] inputs = {{},
+                {Bit.ZERO},
+                {Bit.ONE},
+                {Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ZERO, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
+                {Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO}};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "<00000>", "java.lang.IllegalArgumentException", "<00001>", "java.lang.IllegalArgumentException", "<11101>", "java.lang.IllegalArgumentException", "<11111>", "<11011>", "<0000000>"};
+        for (int i = 0; i < inputs.length; i++) {
+            output = new BitList();
+            for (Bit element : inputs[i])
+                output.addFirst(element);
+            try {
+                output.padding(5);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output after padding to 5: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
             }
         }
         if (passed)
