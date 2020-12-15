@@ -1,4 +1,4 @@
-//version 0.5.1
+//version 0.5.5
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -16,6 +16,8 @@ public class Test {
         //testQ2E5a();      //Runs tests for 2.5 isReduced
         //testQ2E5b();      //Runs tests for 2.5 reduce
         //testQ2E6();       //Runs tests for 2.6
+        //testQ2E7a();      //Runs tests for 2.7 shiftRight
+        //testQ2E7b();      //Runs tests for 2.7 shiftLeft
     }
 
     private static void runAllTests() {
@@ -38,6 +40,8 @@ public class Test {
         testQ2E5a();
         testQ2E5b();
         testQ2E6();
+        testQ2E7a();
+        testQ2E7b();
     }
 
     private static void testQ1E1() {
@@ -173,7 +177,7 @@ public class Test {
         Bit[] expectedOutputs = {Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE};
         for (int i = 0; i < inputs.length; i++) {
             bitList = new BitList();
-            for (Bit element: inputs[i])
+            for (Bit element : inputs[i])
                 bitList.addFirst(element);
             output = bitList.removeFirst();
             if (!output.equals(expectedOutputs[i])) {
@@ -197,7 +201,7 @@ public class Test {
         Bit[] expectedOutputs = {Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE};
         for (int i = 0; i < inputs.length; i++) {
             bitList = new BitList();
-            for (Bit element: inputs[i])
+            for (Bit element : inputs[i])
                 bitList.addFirst(element);
             output = bitList.removeLast();
             if (!output.equals(expectedOutputs[i])) {
@@ -230,8 +234,7 @@ public class Test {
                     bitList = new BitList();
                     for (Bit element : inputs[i])
                         bitList.addFirst(element);
-                }
-                else
+                } else
                     bitList = null;
                 output = new BitList(bitList);
                 if (!output.toString().equals(expectedOutputs[i])) {
@@ -298,7 +301,7 @@ public class Test {
                 {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE}};
-        boolean[] expectedOutputs = {false,false, true, true, false, true, true, false, true, false, false, false};
+        boolean[] expectedOutputs = {false, false, true, true, false, true, true, false, true, false, false, false};
         for (int i = 0; i < inputs.length; i++) {
             bitList = new BitList();
             for (Bit element : inputs[i])
@@ -376,6 +379,94 @@ public class Test {
                 passed = false;
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+
+    private static void testQ2E7a() {
+        boolean passed = true;
+        BitList output;
+        Bit shift;
+        Bit[][] inputs = {{},
+                {Bit.ZERO},
+                {Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
+                {Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE}};
+        String[] expectedOutputs = {"<>", "<>", "<>", "<>", "<>", "<>", "<111>", "<101>", "<0000>", "<111>", "<000>"};
+        Bit[][] expectedShifts = {{null, null, null},
+                {Bit.ZERO, null, null},
+                {Bit.ONE, Bit.ZERO, null},
+                {Bit.ZERO, Bit.ONE, null},
+                {Bit.ONE, Bit.ZERO, Bit.ONE},
+                {Bit.ZERO, Bit.ONE, Bit.ONE},
+                {Bit.ONE, Bit.ONE, Bit.ONE},
+                {Bit.ZERO, Bit.ZERO, Bit.ONE},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE}};
+        for (int i = 0; i < inputs.length; i++) {
+            output = new BitList();
+            for (Bit element : inputs[i])
+                output.addFirst(element);
+            for (int j = 0; j < 3; j++) {
+                shift = output.shiftRight();
+                if (shift == null) {
+                    if (expectedShifts[i][j] != null) {
+                        passed = false;
+                        System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                        System.out.println("Expected return at rightShift number " + (j + 1) + ": " + expectedShifts[i][j] + " But output was: " + shift);
+                    }
+                } else if (!shift.equals(expectedShifts[i][j])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected return at rightShift number " + (j + 1) + ": " + expectedShifts[i][j] + " But output was: " + shift);
+                }
+            }
+            if (!output.toString().equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output after 3 right shifts: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E7b() {
+        boolean passed = true;
+        BitList output;
+        Bit[][] inputs = {{},
+                {Bit.ZERO},
+                {Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ZERO, Bit.ONE},
+                {Bit.ONE, Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
+                {Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE}};
+        String[] expectedOutputs = {"<000>", "<0000>", "<01000>", "<10000>", "<101000>", "<110000>", "<111111000>", "<101100000>", "<0000000000>", "<111000000>", "<000111000>"};
+        for (int i = 0; i < inputs.length; i++) {
+            output = new BitList();
+            for (Bit element : inputs[i])
+                output.addFirst(element);
+            output.shiftLeft();
+            output.shiftLeft();
+            output.shiftLeft();
+            if (!output.toString().equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output after 3 left shifts: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
         if (passed)
