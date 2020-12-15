@@ -1,16 +1,21 @@
-//version 0.6.0
+//version 0.7.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
         //runAllTests();    //Runs all the tests
         //testPartA();
         //testPartB();
+        //testPartC();
         //testQ1E1();       //Runs tests for 1.1
         //testQ1E2();       //Runs tests for 1.2
-        //testQ2E2a();      //Runs tests for 2.2 addFirst
-        //testQ2E2b();      //Runs tests for 2.2 addLast
-        //testQ2E2c();      //Runs tests for 2.2 removeFirst
-        //testQ2E2d();      //Runs tests for 2.2 removeLast
+        //testQ2E1a();      //Runs tests for 2.2 addFirst
+        //testQ2E1b();      //Runs tests for 2.2 addLast
+        //testQ2E1c();      //Runs tests for 2.2 removeFirst
+        //testQ2E1d();      //Runs tests for 2.2 removeLast
+        //testQ2E2a();      //Runs tests for 2.2 addFirst - requires the implementation of toString in BitList
+        //testQ2E2b();      //Runs tests for 2.2 addLast - requires the implementation of toString in BitList
+        //testQ2E2c();      //Runs tests for 2.2 removeFirst - requires the implementation of toString in BitList
+        //testQ2E2d();      //Runs tests for 2.2 removeLast - requires the implementation of toString in BitList
         //testQ2E3();       //Runs tests for 2.3
         //testQ2E4();       //Runs tests for 2.4
         //testQ2E5a();      //Runs tests for 2.5 isReduced
@@ -19,11 +24,13 @@ public class Test {
         //testQ2E7a();      //Runs tests for 2.7 shiftRight
         //testQ2E7b();      //Runs tests for 2.7 shiftLeft
         //testQ2E8();       //Runs tests for 2.8
+        //testQ3E1();       //Runs tests for 3.1 requires the implementation of toString in BinaryNumber
     }
 
     private static void runAllTests() {
         testPartA();
         testPartB();
+        testPartC();
     }
 
     private static void testPartA() {
@@ -32,6 +39,10 @@ public class Test {
     }
 
     private static void testPartB() {
+        testQ2E1a();
+        testQ2E1b();
+        testQ2E1c();
+        testQ2E1d();
         testQ2E2a();
         testQ2E2b();
         testQ2E2c();
@@ -44,6 +55,10 @@ public class Test {
         testQ2E7a();
         testQ2E7b();
         testQ2E8();
+    }
+
+    private static void testPartC() {
+        testQ3E1();
     }
 
     private static void testQ1E1() {
@@ -84,6 +99,100 @@ public class Test {
         Bit[] expectedOutputs = {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE};
         for (int i = 0; i < inputs.length; i++) {
             output = Bit.fullAdderCarry(inputs[i][0], inputs[i][1], inputs[i][2]);
+            if (!output.equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E1a() {
+        boolean passed = true;
+        BitList bitList;
+        Bit output;
+        Bit[][] inputs = {{Bit.ZERO, Bit.ONE}};
+        Bit[] expectedOutputs = {Bit.ONE};
+        for (int i = 0; i < inputs.length; i++) {
+            bitList = new BitList();
+            for (Bit element: inputs[i])
+                bitList.addFirst(element);
+            output = bitList.getFirst();
+            if (!output.equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("When using addFirst only on these inputs, getFirst() should return: " + expectedOutputs[i] + " But output was: " + output);
+            }
+            if (bitList.getNumberOfOnes() != 1){
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected numberOfOnes: " + 1 + " But output was: " + bitList.getNumberOfOnes());
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E1b() {
+        boolean passed = true;
+        BitList bitList;
+        Bit output;
+        Bit[][] inputs = {{Bit.ZERO, Bit.ONE}};
+        Bit[] expectedOutputs = {Bit.ZERO};
+        for (int i = 0; i < inputs.length; i++) {
+            bitList = new BitList();
+            for (Bit element: inputs[i])
+                bitList.addLast(element);
+            output = bitList.getFirst();
+            if (!output.equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("When using addLast only on these inputs, getFirst() should return: " + expectedOutputs[i] + " But output was: " + output);
+            }
+            if (bitList.getNumberOfOnes() != 1){
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected numberOfOnes: " + 1 + " But output was: " + bitList.getNumberOfOnes());
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E1c() {
+        boolean passed = true;
+        BitList bitList;
+        Bit output;
+        Bit[][] inputs = {{Bit.ZERO, Bit.ONE}};
+        Bit[] expectedOutputs = {Bit.ONE};
+        for (int i = 0; i < inputs.length; i++) {
+            bitList = new BitList();
+            for (Bit element: inputs[i])
+                bitList.addFirst(element);
+            output = bitList.removeFirst();
+            if (!output.equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E1d() {
+        boolean passed = true;
+        BitList bitList;
+        Bit output;
+        Bit[][] inputs = {{Bit.ZERO, Bit.ONE}};
+        Bit[] expectedOutputs = {Bit.ZERO};
+        for (int i = 0; i < inputs.length; i++) {
+            bitList = new BitList();
+            for (Bit element: inputs[i])
+                bitList.addFirst(element);
+            output = bitList.removeLast();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
@@ -243,6 +352,10 @@ public class Test {
                     passed = false;
                     System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+                if (output.getNumberOfOnes() != bitList.getNumberOfOnes()){
+                    passed = false;
+                    System.out.println("Failed: numberOfOnes isn't correct");
                 }
                 output.addFirst(Bit.ZERO);
                 if (output.equals(bitList)) {
@@ -504,6 +617,31 @@ public class Test {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
                     System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E1() {
+        boolean passed = true;
+        BinaryNumber output;
+        char[] inputs = {'!', 'a', '0', '1', '2', '9'};
+        String[] expectedOutputs = {};
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                output = new BinaryNumber(inputs[i]);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i]);
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
