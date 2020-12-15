@@ -2,7 +2,7 @@
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
-        runAllTests();    //Runs all the tests
+        //runAllTests();    //Runs all the tests
         //testPartA();
         //testPartB();
         //testQ1E1();       //Runs tests for 1.1
