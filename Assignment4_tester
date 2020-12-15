@@ -1,4 +1,4 @@
-//version 0.4.5
+//version 0.5.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -91,7 +91,10 @@ public class Test {
     private static void testQ2E2a() {
         boolean passed = true;
         BitList output;
-        Bit[][] inputs = {{Bit.ZERO, Bit.ZERO, Bit.ZERO},
+        Bit[][] inputs = {{},
+                {null},
+                {Bit.ZERO, null, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ZERO, Bit.ZERO, Bit.ONE},
                 {Bit.ZERO, Bit.ONE, Bit.ZERO},
                 {Bit.ZERO, Bit.ONE, Bit.ONE},
@@ -99,15 +102,23 @@ public class Test {
                 {Bit.ONE, Bit.ZERO, Bit.ONE},
                 {Bit.ONE, Bit.ONE, Bit.ZERO},
                 {Bit.ONE, Bit.ONE, Bit.ONE}};
-        String[] expectedOutputs = {"<000>", "<001>", "<010>", "<011>", "<100>", "<101>", "<110>", "<111>"};
+        String[] expectedOutputs = {"<>", "java.lang.IllegalArgumentException", "java.lang.IllegalArgumentException", "<000>", "<001>", "<010>", "<011>", "<100>", "<101>", "<110>", "<111>"};
         for (int i = 0; i < inputs.length; i++) {
-            output = new BitList();
-            for (Bit element: inputs[i])
-                output.addFirst(element);
-            if (!output.toString().equals(expectedOutputs[i])) {
-                passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
-                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            try {
+                output = new BitList();
+                for (Bit element : inputs[i])
+                    output.addFirst(element);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
             }
         }
         if (passed)
@@ -117,7 +128,10 @@ public class Test {
     private static void testQ2E2b() {
         boolean passed = true;
         BitList output;
-        Bit[][] inputs = {{Bit.ZERO, Bit.ZERO, Bit.ZERO},
+        Bit[][] inputs = {{},
+                {null},
+                {Bit.ZERO, null, Bit.ZERO},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ZERO, Bit.ZERO, Bit.ONE},
                 {Bit.ZERO, Bit.ONE, Bit.ZERO},
                 {Bit.ZERO, Bit.ONE, Bit.ONE},
@@ -125,15 +139,23 @@ public class Test {
                 {Bit.ONE, Bit.ZERO, Bit.ONE},
                 {Bit.ONE, Bit.ONE, Bit.ZERO},
                 {Bit.ONE, Bit.ONE, Bit.ONE}};
-        String[] expectedOutputs = {"<000>", "<100>", "<010>", "<110>", "<001>", "<101>", "<011>", "<111>"};
+        String[] expectedOutputs = {"<>", "java.lang.IllegalArgumentException", "java.lang.IllegalArgumentException", "<000>", "<100>", "<010>", "<110>", "<001>", "<101>", "<011>", "<111>"};
         for (int i = 0; i < inputs.length; i++) {
-            output = new BitList();
-            for (Bit element: inputs[i])
-                output.addLast(element);
-            if (!output.toString().equals(expectedOutputs[i])) {
-                passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
-                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            try {
+                output = new BitList();
+                for (Bit element : inputs[i])
+                    output.addLast(element);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
             }
         }
         if (passed)
@@ -191,7 +213,9 @@ public class Test {
     private static void testQ2E3() {
         boolean passed = true;
         BitList bitList, output;
-        Bit[][] inputs = {{Bit.ZERO, Bit.ZERO, Bit.ZERO},
+        Bit[][] inputs = {null,
+                {},
+                {Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ZERO, Bit.ZERO, Bit.ONE},
                 {Bit.ZERO, Bit.ONE, Bit.ZERO},
                 {Bit.ZERO, Bit.ONE, Bit.ONE},
@@ -199,20 +223,33 @@ public class Test {
                 {Bit.ONE, Bit.ZERO, Bit.ONE},
                 {Bit.ONE, Bit.ONE, Bit.ZERO},
                 {Bit.ONE, Bit.ONE, Bit.ONE}};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "<>", "<000>", "<001>", "<010>", "<011>", "<100>", "<101>", "<110>", "<111>"};
         for (int i = 0; i < inputs.length; i++) {
-            bitList = new BitList();
-            for (Bit element : inputs[i])
-                bitList.addFirst(element);
-            output = new BitList(bitList);
-            if (!output.equals(bitList)) {
-                passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
-                System.out.println("Expected output: " + bitList + " But output was: " + output);
-            }
-            output.addFirst(Bit.ZERO);
-            if (output.equals(bitList)) {
-                passed = false;
-                System.out.println("Failed: Copy isn't a deep copy");
+            try {
+                if (inputs[i] != null) {
+                    bitList = new BitList();
+                    for (Bit element : inputs[i])
+                        bitList.addFirst(element);
+                }
+                else
+                    bitList = null;
+                output = new BitList(bitList);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+                output.addFirst(Bit.ZERO);
+                if (output.equals(bitList)) {
+                    passed = false;
+                    System.out.println("Failed: Copy isn't a deep copy");
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
             }
         }
         if (passed)
@@ -282,7 +319,7 @@ public class Test {
         Bit[][] inputs = {{},
                 {Bit.ZERO},
                 {Bit.ZERO, Bit.ONE},
-                {Bit.ONE, Bit.ZERO},
+                {Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ONE, Bit.ZERO, Bit.ONE},
                 {Bit.ONE, Bit.ONE, Bit.ZERO},
                 {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
@@ -290,16 +327,24 @@ public class Test {
                 {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO, Bit.ZERO},
                 {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ONE, Bit.ONE}};
-        String[] expectedOutputs = {"<>", "<0>", "<01>", "<10>", "<101>", "<110>", "<11>", "<101100>", "<0>", "<11000>", "<0111>"};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "<0>", "<01>", "java.lang.IllegalArgumentException", "<101>", "<110>", "<11>", "<101100>", "<0>", "<11000>", "<0111>"};
         for (int i = 0; i < inputs.length; i++) {
-            output = new BitList();
-            for (Bit element : inputs[i])
-                output.addFirst(element);
-            output.reduce();
-            if (!output.toString().equals(expectedOutputs[i])) {
-                passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
-                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            try {
+                output = new BitList();
+                for (Bit element : inputs[i])
+                    output.addFirst(element);
+                output.reduce();
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
             }
         }
         if (passed)
