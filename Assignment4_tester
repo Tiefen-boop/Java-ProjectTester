@@ -1,8 +1,8 @@
-//version 0.5.0
+//version 0.5.1
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
-        //runAllTests();    //Runs all the tests
+        runAllTests();    //Runs all the tests
         //testPartA();
         //testPartB();
         //testQ1E1();       //Runs tests for 1.1
@@ -287,7 +287,7 @@ public class Test {
         BitList bitList;
         boolean output;
         Bit[][] inputs = {{},
-                {Bit.ONE}
+                {Bit.ONE},
                 {Bit.ZERO},
                 {Bit.ZERO, Bit.ONE},
                 {Bit.ONE, Bit.ZERO},
