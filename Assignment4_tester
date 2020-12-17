@@ -1,4 +1,4 @@
-//version 0.8.0
+//version 0.9.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -29,6 +29,12 @@ public class Test {
         //testQ3E4();       //Runs tests for 3.4
         //testQ3E5a();      //Runs tests for 3.5 tests negation only
         //testQ3E5b();      //Runs tests for 3.5 tests correct form of addition with negation
+        //testQ3E6();       //Runs tests for 3.6
+        //testQ3E7();       //Runs tests for 3.7
+        //testQ3E8();       //Runs tests for 3.8
+        //testQ3E9();       //Runs tests for 3.9
+        //testQ3E10();       //Runs tests for 3.10
+        //testQ3E11();       //Runs tests for 3.11
     }
 
     private static void runAllTests() {
@@ -67,6 +73,12 @@ public class Test {
         testQ3E4();
         testQ3E5a();
         testQ3E5b();
+        testQ3E6();
+        testQ3E7();
+        testQ3E8();
+        testQ3E9();
+        testQ3E10();
+        testQ3E11();
     }
 
     private static void testQ1E1() {
@@ -125,7 +137,7 @@ public class Test {
         Bit[] expectedOutputs = {Bit.ONE};
         for (int i = 0; i < inputs.length; i++) {
             bitList = new BitList();
-            for (Bit element: inputs[i])
+            for (Bit element : inputs[i])
                 bitList.addFirst(element);
             output = bitList.getFirst();
             if (!output.equals(expectedOutputs[i])) {
@@ -133,7 +145,7 @@ public class Test {
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("When using addFirst only on these inputs, getFirst() should return: " + expectedOutputs[i] + " But output was: " + output);
             }
-            if (bitList.getNumberOfOnes() != 1){
+            if (bitList.getNumberOfOnes() != 1) {
                 passed = false;
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected numberOfOnes: " + 1 + " But output was: " + bitList.getNumberOfOnes());
@@ -151,7 +163,7 @@ public class Test {
         Bit[] expectedOutputs = {Bit.ZERO};
         for (int i = 0; i < inputs.length; i++) {
             bitList = new BitList();
-            for (Bit element: inputs[i])
+            for (Bit element : inputs[i])
                 bitList.addLast(element);
             output = bitList.getFirst();
             if (!output.equals(expectedOutputs[i])) {
@@ -159,7 +171,7 @@ public class Test {
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("When using addLast only on these inputs, getFirst() should return: " + expectedOutputs[i] + " But output was: " + output);
             }
-            if (bitList.getNumberOfOnes() != 1){
+            if (bitList.getNumberOfOnes() != 1) {
                 passed = false;
                 System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                 System.out.println("Expected numberOfOnes: " + 1 + " But output was: " + bitList.getNumberOfOnes());
@@ -177,7 +189,7 @@ public class Test {
         Bit[] expectedOutputs = {Bit.ONE};
         for (int i = 0; i < inputs.length; i++) {
             bitList = new BitList();
-            for (Bit element: inputs[i])
+            for (Bit element : inputs[i])
                 bitList.addFirst(element);
             output = bitList.removeFirst();
             if (!output.equals(expectedOutputs[i])) {
@@ -198,7 +210,7 @@ public class Test {
         Bit[] expectedOutputs = {Bit.ZERO};
         for (int i = 0; i < inputs.length; i++) {
             bitList = new BitList();
-            for (Bit element: inputs[i])
+            for (Bit element : inputs[i])
                 bitList.addFirst(element);
             output = bitList.removeLast();
             if (!output.equals(expectedOutputs[i])) {
@@ -361,7 +373,7 @@ public class Test {
                     System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
-                if (output.getNumberOfOnes() != bitList.getNumberOfOnes()){
+                if (output.getNumberOfOnes() != bitList.getNumberOfOnes()) {
                     passed = false;
                     System.out.println("Failed: numberOfOnes isn't correct");
                 }
@@ -668,7 +680,7 @@ public class Test {
             output = inputs[i].equals(inputs2[i]);
             if (output != expectedOutputs[i]) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i] + ".equals(" + inputs2[i] +")");
+                System.out.println("Failed on input: " + inputs[i] + ".equals(" + inputs2[i] + ")");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -679,28 +691,46 @@ public class Test {
     private static void testQ3E4() {
         boolean passed = true;
         BinaryNumber output;
-        BinaryNumber[] inputs = {new BinaryNumber('7'), new BinaryNumber('2'), new BinaryNumber('0'), new BinaryNumber('0'), new BinaryNumber('7')};
-        BinaryNumber[][] inputs2 = {{new BinaryNumber('1')},
+        BinaryNumber[] inputs = {new BinaryNumber('7'), new BinaryNumber('7'), new BinaryNumber('2'), new BinaryNumber('0'), new BinaryNumber('0'), new BinaryNumber('7')};
+        BinaryNumber[][] inputs2 = {{null},
+                {new BinaryNumber('1')},
                 {new BinaryNumber('9'), new BinaryNumber('9')},
                 {new BinaryNumber('1')},
                 {new BinaryNumber('0')},
                 {new BinaryNumber('1'), new BinaryNumber('9'), new BinaryNumber('9'), new BinaryNumber('9'), new BinaryNumber('9')}};
-        String[] expectedOutputs = {"01000", "010100", "01", "0", "0101100"};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "01000", "010100", "01", "0", "0101100"};
         for (int i = 0; i < inputs.length; i++) {
-            output = inputs[i];
-            for (BinaryNumber number: inputs2[i])
-                output = output.add(number);
-            if (!output.toString().equals(expectedOutputs[i])) {
-                passed = false;
-                String additionChain ="";
-                for (BinaryNumber number: inputs2[i])
-                    additionChain = " + " + number + additionChain;
-                System.out.println("Failed on input: " + inputs[i] + additionChain);
-                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
-            }
-            if (!inputs2[i][0].isLegal()){
-                passed = false;
-                System.out.println("Failed: didn't return arguments back to legal state");
+            try {
+                output = inputs[i];
+                for (BinaryNumber number : inputs2[i])
+                    output = output.add(number);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String additionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            additionChain = " + null" + additionChain;
+                        else
+                            additionChain = " + " + number + additionChain;
+                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+                if (!inputs2[i][0].isLegal()) {
+                    passed = false;
+                    System.out.println("Failed: didn't return arguments back to legal state");
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    String additionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            additionChain = " + null" + additionChain;
+                        else
+                            additionChain = " + " + number + additionChain;
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
             }
         }
         if (passed)
@@ -727,28 +757,290 @@ public class Test {
     private static void testQ3E5b() {
         boolean passed = true;
         BinaryNumber output;
-        BinaryNumber[] inputs = {new BinaryNumber('7').negate(), new BinaryNumber('2'), new BinaryNumber('0'), new BinaryNumber('0'), new BinaryNumber('1')};
-        BinaryNumber[][] inputs2 = {{new BinaryNumber('1')},
+        BinaryNumber[] inputs = {new BinaryNumber('7'), new BinaryNumber('7').negate(), new BinaryNumber('2'), new BinaryNumber('0'), new BinaryNumber('0'), new BinaryNumber('1')};
+        BinaryNumber[][] inputs2 = {{null},
+                {new BinaryNumber('1')},
                 {new BinaryNumber('9').negate(), new BinaryNumber('9').negate()},
                 {new BinaryNumber('1').negate()},
                 {new BinaryNumber('0').negate()},
                 {new BinaryNumber('1').negate(), new BinaryNumber('9'), new BinaryNumber('9').negate(), new BinaryNumber('9').negate(), new BinaryNumber('9')}};
-        String[] expectedOutputs = {"1010", "110000", "11", "0", "0"};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "1010", "110000", "11", "0", "0"};
         for (int i = 0; i < inputs.length; i++) {
-            output = inputs[i];
-            for (BinaryNumber number: inputs2[i])
-                output = output.add(number);
-            if (!output.toString().equals(expectedOutputs[i])) {
+            try {
+                output = inputs[i];
+                for (BinaryNumber number : inputs2[i])
+                    output = output.add(number);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String additionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            additionChain = " + null" + additionChain;
+                        else
+                            additionChain = " + " + number + additionChain;
+                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+                if (!inputs2[i][0].isLegal()) {
+                    passed = false;
+                    System.out.println("Failed: didn't return arguments back to legal state");
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String additionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            additionChain = " + null" + additionChain;
+                        else
+                            additionChain = " + " + number + additionChain;
+                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E6() {
+        boolean passed = true;
+        BinaryNumber output;
+        BinaryNumber[] inputs = {new BinaryNumber('7'), new BinaryNumber('7'), new BinaryNumber('2'), new BinaryNumber('0'), new BinaryNumber('0'), new BinaryNumber('7')};
+        BinaryNumber[][] inputs2 = {{null},
+                {new BinaryNumber('1')},
+                {new BinaryNumber('9'), new BinaryNumber('9')},
+                {new BinaryNumber('1')},
+                {new BinaryNumber('0')},
+                {new BinaryNumber('1'), new BinaryNumber('9'), new BinaryNumber('9'), new BinaryNumber('9'), new BinaryNumber('9')}};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "0110", "110000", "11", "0", "100010"};
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                output = inputs[i];
+                for (BinaryNumber number : inputs2[i])
+                    output = output.subtract(number);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String subtractionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            subtractionChain = " - null" + subtractionChain;
+                        else
+                            subtractionChain = " - " + number + subtractionChain;
+                    System.out.println("Failed on input: " + inputs[i] + subtractionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+                if (!inputs2[i][0].isLegal()) {
+                    passed = false;
+                    System.out.println("Failed: didn't return arguments back to legal state");
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String subtractionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            subtractionChain = " - null" + subtractionChain;
+                        else
+                            subtractionChain = " - " + number + subtractionChain;
+                    System.out.println("Failed on input: " + inputs[i] + subtractionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E7() {
+        boolean passed = true;
+        int output;
+        BinaryNumber[] inputs = {new BinaryNumber('7'), new BinaryNumber('0'), new BinaryNumber('4').negate(), new BinaryNumber('7').negate()};
+        int[] expectedOutputs = {1, 0, -1, -1};
+        for (int i = 0; i < inputs.length; i++) {
+            output = inputs[i].signum();
+            if (output != expectedOutputs[i]) {
                 passed = false;
-                String additionChain ="";
-                for (BinaryNumber number: inputs2[i])
-                    additionChain = " + " + number + additionChain;
-                System.out.println("Failed on input: " + inputs[i] + additionChain);
+                System.out.println("Failed on input: " + inputs[i]);
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
-            if (!inputs2[i][0].isLegal()){
-                passed = false;
-                System.out.println("Failed: didn't return arguments back to legal state");
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E8() {
+        boolean passed = true;
+        String output;
+        BinaryNumber[] inputs = {new BinaryNumber('7'), new BinaryNumber('7'), new BinaryNumber('0'), new BinaryNumber('4').negate(), new BinaryNumber('7'), new BinaryNumber('7')};
+        BinaryNumber[] inputs2 = {null, new BinaryNumber('7'), new BinaryNumber('0').negate(), new BinaryNumber('4'), new BinaryNumber('7').negate(), new BinaryNumber('6')};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "0", "0", "-1", "1", "1"};
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                output = String.valueOf(inputs[i].compareTo(inputs2[i]));
+                if (!output.equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i] + " compared to " + inputs2[i]);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i] + " compared to " + inputs2[i]);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E9() {
+        boolean passed = true;
+        String output;
+        BinaryNumber[] inputs = {new BinaryNumber('7'),
+                new BinaryNumber('0'),
+                new BinaryNumber('4').negate(),
+                new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8')).negate(),
+                calculate2Power32(),
+                calculate2Power32Minus1(),
+                calculate2Power32().negate(),
+                calculate2Power32().negate().subtract(new BinaryNumber('1'))};
+        String[] expectedOutputs = {"7", "0", "-4", "-32", "java.lang.RuntimeException", "2147483647", "-2147483648", "java.lang.RuntimeException"};
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                output = String.valueOf(inputs[i].toInt());
+                if (!output.equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static BinaryNumber calculate2Power32() {
+        BinaryNumber binaryNumber = new BinaryNumber('8');
+        for (int i = 0; i < 28; i++) {
+            binaryNumber = binaryNumber.add(binaryNumber);
+        }
+        return binaryNumber;
+    }
+
+    private static BinaryNumber calculate2Power32Minus1() {
+        BinaryNumber binaryNumber = new BinaryNumber('8');
+        for (int i = 0; i < 28; i++) {
+            binaryNumber = binaryNumber.add(binaryNumber);
+        }
+        return binaryNumber.subtract(new BinaryNumber('1'));
+    }
+
+    private static void testQ3E10() {
+        boolean passed = true;
+        BinaryNumber output;
+        BinaryNumber[] inputs = {new BinaryNumber('7'),
+                new BinaryNumber('7'),
+                new BinaryNumber('0'),
+                new BinaryNumber('4'),
+                new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8')).negate(),
+                new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8'))};
+        BinaryNumber[][] inputs2 = {{null},
+                {new BinaryNumber('7')},
+                {new BinaryNumber('8')},
+                {new BinaryNumber('4').negate()},
+                {new BinaryNumber('8'), (new BinaryNumber('2')), new BinaryNumber('2').negate()},
+                {new BinaryNumber('8'), new BinaryNumber('0').negate()}};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "0110001", "0", "110000", "010000000000", "0"};
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                output = inputs[i];
+                for (BinaryNumber number : inputs2[i])
+                    output = output.multiply(number);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String multiplicationChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            multiplicationChain = " * null" + multiplicationChain;
+                        else
+                            multiplicationChain = " * " + number + multiplicationChain;
+                    System.out.println("Failed on input: " + inputs[i] + multiplicationChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String multiplicationChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            multiplicationChain = " * null" + multiplicationChain;
+                        else
+                            multiplicationChain = " * " + number + multiplicationChain;
+                    System.out.println("Failed on input: " + inputs[i] + multiplicationChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E11() {
+        boolean passed = true;
+        BinaryNumber output;
+        BinaryNumber[] inputs = {new BinaryNumber('7'),
+                new BinaryNumber('7'),
+                new BinaryNumber('0'),
+                new BinaryNumber('8'),
+                new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8')).negate(),
+                new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8')),
+                calculate2Power32Minus1(),
+                calculate2Power32().negate()};
+        BinaryNumber[][] inputs2 = {{null},
+                {new BinaryNumber('7')},
+                {new BinaryNumber('8')},
+                {new BinaryNumber('4').negate()},
+                {new BinaryNumber('8'), new BinaryNumber('2').negate()},
+                {new BinaryNumber('8'), new BinaryNumber('0').negate()},
+                {new BinaryNumber('8')},
+                {new BinaryNumber('2')}};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "01", "0", "110", "010", "java.lang.RuntimeException", "01111111111111111111111111111", "11000000000000000000000000000000"};
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                output = inputs[i];
+                for (BinaryNumber number : inputs2[i])
+                    output = output.divide(number);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String divisionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            divisionChain = " / null" + divisionChain;
+                        else
+                            divisionChain = " / " + number + divisionChain;
+                    System.out.println("Failed on input: " + inputs[i] + divisionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    String divisionChain = "";
+                    for (BinaryNumber number : inputs2[i])
+                        if (number == null)
+                            divisionChain = " / null" + divisionChain;
+                        else
+                            divisionChain = " / " + number + divisionChain;
+                    System.out.println("Failed on input: " + inputs[i] + divisionChain);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
             }
         }
         if (passed)
