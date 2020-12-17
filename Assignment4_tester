@@ -1,4 +1,4 @@
-//version 0.9.0
+//version 1.0.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -35,6 +35,8 @@ public class Test {
         //testQ3E9();       //Runs tests for 3.9
         //testQ3E10();       //Runs tests for 3.10
         //testQ3E11();       //Runs tests for 3.11
+        //testQ3E12();       //Runs tests for 3.12
+        //testQ3E13();       //Runs tests for 3.13
     }
 
     private static void runAllTests() {
@@ -79,6 +81,8 @@ public class Test {
         testQ3E9();
         testQ3E10();
         testQ3E11();
+        testQ3E12();
+        testQ3E13();
     }
 
     private static void testQ1E1() {
@@ -621,7 +625,7 @@ public class Test {
                 {Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE},
                 {Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE},
                 {Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO, Bit.ZERO}};
-        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "<00000>", "java.lang.IllegalArgumentException", "<00001>", "java.lang.IllegalArgumentException", "<11101>", "java.lang.IllegalArgumentException", "<11111>", "<11011>", "<0000000>"};
+        String[] expectedOutputs = {"java.lang.IllegalArgumentException", "<00000>", "<11111>", "<00001>", "<11110>", "<11101>", "<11100>", "<11111>", "<11011>", "<0000000>"};
         for (int i = 0; i < inputs.length; i++) {
             output = new BitList();
             for (Bit element : inputs[i])
@@ -1041,6 +1045,53 @@ public class Test {
                     System.out.println("Failed on input: " + inputs[i] + divisionChain);
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E12() {
+        boolean passed = true;
+        BinaryNumber output;
+        String[] inputs = {"0", "-32", "a", null, "-", "-4923456", "1216543424684948123215", "-354224848179261915075"};
+        String[] expectedOutputs = {"0", "1100000","java.lang.IllegalArgumentException","java.lang.IllegalArgumentException","java.lang.IllegalArgumentException", "101101001101111111000000", "010000011111001011101110011101110011101001000111100000101110111001001111", "1011001100110000100100100010010101100000111010011010110100000000111101"};
+        for (int i = 0; i < inputs.length; i++) {
+            try {
+                output = new BinaryNumber(inputs[i]);
+                if (!output.toString().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+                }
+            } catch (Exception e) {
+                if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
+                    passed = false;
+                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
+                }
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ3E13() {
+        boolean passed = true;
+        String output;
+        BinaryNumber[] inputs = {new BinaryNumber('7'),
+                new BinaryNumber('8').negate(),
+                new BinaryNumber("100"),
+                new BinaryNumber("354224848179261915075"),
+                new BinaryNumber("354224848179261915075").negate(),
+                new BinaryNumber("0").negate()};
+        String[] expectedOutputs = {"7", "-8", "100", "354224848179261915075", "-354224848179261915075", "0"};
+        for (int i = 0; i < inputs.length; i++) {
+            output = inputs[i].toIntString();
+            if (!output.equals(expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + inputs[i]);
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
         if (passed)
