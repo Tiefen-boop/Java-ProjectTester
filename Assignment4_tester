@@ -101,7 +101,7 @@ public class Test {
             output = Bit.fullAdderSum(inputs[i][0], inputs[i][1], inputs[i][2]);
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q1E1");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -125,7 +125,7 @@ public class Test {
             output = Bit.fullAdderCarry(inputs[i][0], inputs[i][1], inputs[i][2]);
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q1E2");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -146,12 +146,12 @@ public class Test {
             output = bitList.getFirst();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E1a);
                 System.out.println("When using addFirst only on these inputs, getFirst() should return: " + expectedOutputs[i] + " But output was: " + output);
             }
             if (bitList.getNumberOfOnes() != 1) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E1a");
                 System.out.println("Expected numberOfOnes: " + 1 + " But output was: " + bitList.getNumberOfOnes());
             }
         }
@@ -172,12 +172,12 @@ public class Test {
             output = bitList.getFirst();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E1b");
                 System.out.println("When using addLast only on these inputs, getFirst() should return: " + expectedOutputs[i] + " But output was: " + output);
             }
             if (bitList.getNumberOfOnes() != 1) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E1b");
                 System.out.println("Expected numberOfOnes: " + 1 + " But output was: " + bitList.getNumberOfOnes());
             }
         }
@@ -198,7 +198,7 @@ public class Test {
             output = bitList.removeFirst();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+ " in Q2E1c");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -219,7 +219,7 @@ public class Test {
             output = bitList.removeLast();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E1d");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -249,13 +249,13 @@ public class Test {
                     output.addFirst(element);
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E2a");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E2a");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -286,13 +286,13 @@ public class Test {
                     output.addLast(element);
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E2b");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E2b");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -317,7 +317,7 @@ public class Test {
             output = bitList.removeFirst();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E2c");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -341,7 +341,7 @@ public class Test {
             output = bitList.removeLast();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E2d");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -374,7 +374,7 @@ public class Test {
                 output = new BitList(bitList);
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E3");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
                 if (output.getNumberOfOnes() != bitList.getNumberOfOnes()) {
@@ -389,7 +389,7 @@ public class Test {
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E3");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -416,7 +416,7 @@ public class Test {
             output = bitList.isNumber();
             if (output != expectedOutputs[i]) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E4");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -448,7 +448,7 @@ public class Test {
             output = bitList.isReduced();
             if (output != expectedOutputs[i]) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E5a");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -479,13 +479,13 @@ public class Test {
                 output.reduce();
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E5b");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E5b");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -516,7 +516,7 @@ public class Test {
             output = bitList.complement();
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E6");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -561,18 +561,18 @@ public class Test {
                 if (shift == null) {
                     if (expectedShifts[i][j] != null) {
                         passed = false;
-                        System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                        System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E7a");
                         System.out.println("Expected return at rightShift number " + (j + 1) + ": " + expectedShifts[i][j] + " But output was: " + shift);
                     }
                 } else if (!shift.equals(expectedShifts[i][j])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E7a");
                     System.out.println("Expected return at rightShift number " + (j + 1) + ": " + expectedShifts[i][j] + " But output was: " + shift);
                 }
             }
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E7a");
                 System.out.println("Expected output after 3 right shifts: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -604,7 +604,7 @@ public class Test {
             output.shiftLeft();
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E7b");
                 System.out.println("Expected output after 3 left shifts: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -634,13 +634,13 @@ public class Test {
                 output.padding(5);
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E8");
                     System.out.println("Expected output after padding to 5: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + Arrays.toString(inputs[i]));
+                    System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E8");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -659,13 +659,13 @@ public class Test {
                 output = new BinaryNumber(inputs[i]);
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Failed on input: " + inputs[i]+" in Q3E1");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Failed on input: " + inputs[i]+" in Q3E1");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -684,7 +684,7 @@ public class Test {
             output = inputs[i].equals(inputs2[i]);
             if (output != expectedOutputs[i]) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i] + ".equals(" + inputs2[i] + ")");
+                System.out.println("Failed on input: " + inputs[i] + ".equals(" + inputs2[i] + ")"+" in Q3E3");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -716,12 +716,12 @@ public class Test {
                             additionChain = " + null" + additionChain;
                         else
                             additionChain = " + " + number + additionChain;
-                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Failed on input: " + inputs[i] + additionChain+" in Q3E4");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
                 if (!inputs2[i][0].isLegal()) {
                     passed = false;
-                    System.out.println("Failed: didn't return arguments back to legal state");
+                    System.out.println("Failed: didn't return arguments back to legal state" +" in Q3E4");
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
@@ -732,7 +732,7 @@ public class Test {
                         else
                             additionChain = " + " + number + additionChain;
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Failed on input: " + inputs[i] + additionChain+" in Q3E4");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -750,7 +750,7 @@ public class Test {
             output = inputs[i].negate();
             if (!output.toString().equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i]);
+                System.out.println("Failed on input: " + inputs[i]+" in Q3E5a");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -782,12 +782,12 @@ public class Test {
                             additionChain = " + null" + additionChain;
                         else
                             additionChain = " + " + number + additionChain;
-                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Failed on input: " + inputs[i] + additionChain+" in Q3E5b");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
                 if (!inputs2[i][0].isLegal()) {
                     passed = false;
-                    System.out.println("Failed: didn't return arguments back to legal state");
+                    System.out.println("Failed: didn't return arguments back to legal state" +" in Q3E5b");
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
@@ -798,7 +798,7 @@ public class Test {
                             additionChain = " + null" + additionChain;
                         else
                             additionChain = " + " + number + additionChain;
-                    System.out.println("Failed on input: " + inputs[i] + additionChain);
+                    System.out.println("Failed on input: " + inputs[i] + additionChain+" in Q3E5b");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -831,12 +831,12 @@ public class Test {
                             subtractionChain = " - null" + subtractionChain;
                         else
                             subtractionChain = " - " + number + subtractionChain;
-                    System.out.println("Failed on input: " + inputs[i] + subtractionChain);
+                    System.out.println("Failed on input: " + inputs[i] + subtractionChain+" in Q3E6");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
                 if (!inputs2[i][0].isLegal()) {
                     passed = false;
-                    System.out.println("Failed: didn't return arguments back to legal state");
+                    System.out.println("Failed: didn't return arguments back to legal state"+" in Q3E6");
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
@@ -847,7 +847,7 @@ public class Test {
                             subtractionChain = " - null" + subtractionChain;
                         else
                             subtractionChain = " - " + number + subtractionChain;
-                    System.out.println("Failed on input: " + inputs[i] + subtractionChain);
+                    System.out.println("Failed on input: " + inputs[i] + subtractionChain+" in Q3E6");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -865,7 +865,7 @@ public class Test {
             output = inputs[i].signum();
             if (output != expectedOutputs[i]) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i]);
+                System.out.println("Failed on input: " + inputs[i]+" in Q3E7");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
@@ -884,13 +884,13 @@ public class Test {
                 output = String.valueOf(inputs[i].compareTo(inputs2[i]));
                 if (!output.equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i] + " compared to " + inputs2[i]);
+                    System.out.println("Failed on input: " + inputs[i] + " compared to " + inputs2[i]+" in Q3E8");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i] + " compared to " + inputs2[i]);
+                    System.out.println("Failed on input: " + inputs[i] + " compared to " + inputs2[i]+" in Q3E8");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -916,13 +916,13 @@ public class Test {
                 output = String.valueOf(inputs[i].toInt());
                 if (!output.equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Failed on input: " + inputs[i]+" in Q3E9");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Failed on input: " + inputs[i]+" in Q3E9");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -976,7 +976,7 @@ public class Test {
                             multiplicationChain = " * null" + multiplicationChain;
                         else
                             multiplicationChain = " * " + number + multiplicationChain;
-                    System.out.println("Failed on input: " + inputs[i] + multiplicationChain);
+                    System.out.println("Failed on input: " + inputs[i] + multiplicationChain+" in Q3E10");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
@@ -988,7 +988,7 @@ public class Test {
                             multiplicationChain = " * null" + multiplicationChain;
                         else
                             multiplicationChain = " * " + number + multiplicationChain;
-                    System.out.println("Failed on input: " + inputs[i] + multiplicationChain);
+                    System.out.println("Failed on input: " + inputs[i] + multiplicationChain+" in Q3E10");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -1030,7 +1030,7 @@ public class Test {
                             divisionChain = " / null" + divisionChain;
                         else
                             divisionChain = " / " + number + divisionChain;
-                    System.out.println("Failed on input: " + inputs[i] + divisionChain);
+                    System.out.println("Failed on input: " + inputs[i] + divisionChain+" in Q3E11");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
@@ -1042,7 +1042,7 @@ public class Test {
                             divisionChain = " / null" + divisionChain;
                         else
                             divisionChain = " / " + number + divisionChain;
-                    System.out.println("Failed on input: " + inputs[i] + divisionChain);
+                    System.out.println("Failed on input: " + inputs[i] + divisionChain+" in Q3E11");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -1061,13 +1061,13 @@ public class Test {
                 output = new BinaryNumber(inputs[i]);
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Failed on input: " + inputs[i]+" in Q3E12");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
-                    System.out.println("Failed on input: " + inputs[i]);
+                    System.out.println("Failed on input: " + inputs[i]+" in Q3E12");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + e.getClass().getCanonicalName());
                 }
             }
@@ -1090,7 +1090,7 @@ public class Test {
             output = inputs[i].toIntString();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i]);
+                System.out.println("Failed on input: " + inputs[i]+" in Q3E13");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
