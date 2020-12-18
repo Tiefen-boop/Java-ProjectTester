@@ -146,7 +146,7 @@ public class Test {
             output = bitList.getFirst();
             if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E1a);
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i])+" in Q2E1a");
                 System.out.println("When using addFirst only on these inputs, getFirst() should return: " + expectedOutputs[i] + " But output was: " + output);
             }
             if (bitList.getNumberOfOnes() != 1) {
