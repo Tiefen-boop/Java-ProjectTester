@@ -379,12 +379,12 @@ public class Test {
                 }
                 if (output.getNumberOfOnes() != bitList.getNumberOfOnes()) {
                     passed = false;
-                    System.out.println("Failed: numberOfOnes isn't correct");
+                    System.out.println("Failed: numberOfOnes isn't correct" +" in Q2E3");
                 }
                 output.addFirst(Bit.ZERO);
                 if (output.equals(bitList)) {
                     passed = false;
-                    System.out.println("Failed: Copy isn't a deep copy");
+                    System.out.println("Failed: Copy isn't a deep copy"+" in Q2E3");
                 }
             } catch (Exception e) {
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
