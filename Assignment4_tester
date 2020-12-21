@@ -723,7 +723,15 @@ public class Test {
                     passed = false;
                     System.out.println("Failed: didn't return arguments back to legal state" +" in Q3E4");
                 }
+                if (!inputs[i].isLegal()) {
+                    passed = false;
+                    System.out.println("Failed: didn't return calling object back to legal state" +" in Q3E4");
+                }
             } catch (Exception e) {
+                if (!inputs[i].isLegal()) {
+                    passed = false;
+                    System.out.println("Failed: didn't return calling object back to legal state" +" in Q3E4");
+                }
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     String additionChain = "";
                     for (BinaryNumber number : inputs2[i])
@@ -752,6 +760,10 @@ public class Test {
                 passed = false;
                 System.out.println("Failed on input: " + inputs[i]+" in Q3E5a");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+            if (!inputs[i].isLegal()) {
+                passed = false;
+                System.out.println("Failed: didn't return calling object back to legal state" +" in Q3E5a");
             }
         }
         if (passed)
@@ -789,7 +801,15 @@ public class Test {
                     passed = false;
                     System.out.println("Failed: didn't return arguments back to legal state" +" in Q3E5b");
                 }
+                if (!inputs[i].isLegal()) {
+                    passed = false;
+                    System.out.println("Failed: didn't return calling object back to legal state" +" in Q3E5b");
+                }
             } catch (Exception e) {
+                if (!inputs[i].isLegal()) {
+                    passed = false;
+                    System.out.println("Failed: didn't return calling object back to legal state" +" in Q3E5b");
+                }
                 if (!e.getClass().getCanonicalName().equals(expectedOutputs[i])) {
                     passed = false;
                     String additionChain = "";
