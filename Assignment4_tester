@@ -1,4 +1,4 @@
-//version 1.0.3
+//version 1.0.4
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -926,11 +926,13 @@ public class Test {
                 new BinaryNumber('0'),
                 new BinaryNumber('4').negate(),
                 new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8')).negate(),
-                calculate2Power32(),
-                calculate2Power32Minus1(),
-                calculate2Power32().negate(),
-                calculate2Power32().negate().subtract(new BinaryNumber('1'))};
-        String[] expectedOutputs = {"7", "0", "-4", "-32", "java.lang.RuntimeException", "2147483647", "-2147483648", "java.lang.RuntimeException"};
+                calculate2Power31(),
+                calculate2Power31Minus1(),
+                calculate2Power31().negate(),
+                calculate2Power31().negate().subtract(new BinaryNumber('1')),
+                calculate2Power31().negate().add(new BinaryNumber('1')),
+                calculate2Power32Minus1().negate()};
+        String[] expectedOutputs = {"7", "0", "-4", "-32", "java.lang.RuntimeException", "2147483647", "-2147483648", "java.lang.RuntimeException", "-2147483647", "java.lang.RuntimeException"};
         for (int i = 0; i < inputs.length; i++) {
             try {
                 output = String.valueOf(inputs[i].toInt());
@@ -951,20 +953,28 @@ public class Test {
             System.out.println("Passed all tests");
     }
 
-    private static BinaryNumber calculate2Power32() {
+    private static BinaryNumber calculate2Power32Minus1() {
         BinaryNumber binaryNumber = new BinaryNumber('8');
-        for (int i = 0; i < 28; i++) {
+        for (int i = 0; i < 29; i++) {
             binaryNumber = binaryNumber.add(binaryNumber);
         }
-        return binaryNumber;
+        return binaryNumber.subtract(new BinaryNumber('1'));
     }
 
-    private static BinaryNumber calculate2Power32Minus1() {
+    private static BinaryNumber calculate2Power31Minus1() {
         BinaryNumber binaryNumber = new BinaryNumber('8');
         for (int i = 0; i < 28; i++) {
             binaryNumber = binaryNumber.add(binaryNumber);
         }
         return binaryNumber.subtract(new BinaryNumber('1'));
+    }
+
+    private static BinaryNumber calculate2Power31() {
+        BinaryNumber binaryNumber = new BinaryNumber('8');
+        for (int i = 0; i < 28; i++) {
+            binaryNumber = binaryNumber.add(binaryNumber);
+        }
+        return binaryNumber;
     }
 
     private static void testQ3E10() {
@@ -1026,8 +1036,8 @@ public class Test {
                 new BinaryNumber('8'),
                 new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8')).negate(),
                 new BinaryNumber('8').add(new BinaryNumber('8')).add(new BinaryNumber('8')).add(new BinaryNumber('8')),
-                calculate2Power32Minus1(),
-                calculate2Power32().negate()};
+                calculate2Power31Minus1(),
+                calculate2Power31().negate()};
         BinaryNumber[][] inputs2 = {{null},
                 {new BinaryNumber('7')},
                 {new BinaryNumber('8')},
