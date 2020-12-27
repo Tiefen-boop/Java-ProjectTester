@@ -1,0 +1,43 @@
+//version 0.0.0
+import java.util.*;
+public class Test {
+    public static void main(String[] args) {
+        //runAllTests();    //Runs all the tests
+        //testPartA();      //Runs all tests for part A
+        //testPartB();      //Runs all tests for part B
+        //testQ1E1();       //Runs tests for 1.1
+      }
+
+    private static void runAllTests() {
+        testPartA();
+        //testPartB();
+    }
+
+    private static void testPartA() {
+        System.out.println("Testing 1.1: ");
+        testQ1E1();
+    }
+/*
+    private static void testPartB() {
+        System.out.println("Testing 2.1: ");
+        testQ2E1();
+    }
+    */
+
+    private static void testQ1E1() {
+        boolean passed = true;
+        BigInteger output;
+        String[] inputs = {"-10", "0", "7", "99999"};
+        String[] expectedOutputs = {"0", "0", "21", "4999850001"};
+        for (int i = 0; i < inputs.length; i++) {
+            output = Part1_BigInteger.sumSmaller(new BigInteger(inputs[i]));
+            if (!output.equals(new BigInteger(expectedOutputs[i]))) {
+                passed = false;
+                System.out.println("Failed on input: " + inputs[i]);
+                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+            }
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+}
