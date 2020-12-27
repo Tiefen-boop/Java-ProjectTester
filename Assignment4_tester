@@ -695,6 +695,7 @@ public class Test {
     private static void testQ3E4() {
         boolean passed = true;
         BinaryNumber output;
+        BinaryNumber output2;
         BinaryNumber[] inputs = {new BinaryNumber('7'), new BinaryNumber('7'), new BinaryNumber('2'), new BinaryNumber('0'), new BinaryNumber('0'), new BinaryNumber('7')};
         BinaryNumber[][] inputs2 = {{null},
                 {new BinaryNumber('1')},
@@ -706,8 +707,11 @@ public class Test {
         for (int i = 0; i < inputs.length; i++) {
             try {
                 output = inputs[i];
-                for (BinaryNumber number : inputs2[i])
+                output2 = inputs[i];
+                for (BinaryNumber number : inputs2[i]) {
                     output = output.add(number);
+                    output2.add(number);
+                }
                 if (!output.toString().equals(expectedOutputs[i])) {
                     passed = false;
                     String additionChain = "";
@@ -719,6 +723,10 @@ public class Test {
                     System.out.println("Failed on input: " + inputs[i] + additionChain+" in Q3E4");
                     System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
                 }
+                if (!output.equals(output2)) {
+                	passed = false;
+					System.out.println("Failed: function 'add' should change the value itself (this)" + " in Q3E4");
+				}
                 if (!inputs2[i][0].isLegal()) {
                     passed = false;
                     System.out.println("Failed: didn't return arguments back to legal state" +" in Q3E4");
