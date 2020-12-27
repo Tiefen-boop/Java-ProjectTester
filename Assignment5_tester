@@ -1,39 +1,56 @@
-//version 0.0.0
+//version 0.0.1
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
         //runAllTests();    //Runs all the tests
         //testPartA();      //Runs all tests for part A
         //testPartB();      //Runs all tests for part B
-        //testQ1E1();       //Runs tests for 1.1
-      }
+        //testQ1E0();       //Runs tests for 1.0
+    }
 
     private static void runAllTests() {
         testPartA();
-        //testPartB();
+        testPartB();
     }
 
     private static void testPartA() {
-        System.out.println("Testing 1.1: ");
-        testQ1E1();
+        System.out.println("Testing 1.0: ");
+        testQ1E0();
     }
-/*
-    private static void testPartB() {
-        System.out.println("Testing 2.1: ");
-        testQ2E1();
-    }
-    */
 
-    private static void testQ1E1() {
+    private static void testPartB() {
+        System.out.println("Testing 2.5a: ");
+        testQ2E5a();
+    }
+
+    private static void testQ1E0() {
         boolean passed = true;
-        BigInteger output;
-        String[] inputs = {"-10", "0", "7", "99999"};
-        String[] expectedOutputs = {"0", "0", "21", "4999850001"};
+        PrimeIterator inputs = new PrimeIterator();
+        String output = inputs.next().toString();
+        String expectedOutput = "2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233";
+        for (int i = 0; i < 50; i++) {
+            output = output + ", " + inputs.next();
+        }
+        if (!output.equals(expectedOutput)) {
+            passed = false;
+            System.out.println("Failed on finding all prime numbers: " +" in Q1E0");
+            System.out.println("Expected output: " + expectedOutput);
+            System.out.println("But output was: " + output);
+        }
+        if (passed)
+            System.out.println("Passed all tests");
+    }
+
+    private static void testQ2E5a() {
+        boolean passed = true;
+        String output;
+        String[] inputs = {""};
+        String[] expectedOutputs = {""};
         for (int i = 0; i < inputs.length; i++) {
-            output = Part1_BigInteger.sumSmaller(new BigInteger(inputs[i]));
-            if (!output.equals(new BigInteger(expectedOutputs[i]))) {
+            output = "";
+            if (!output.equals(expectedOutputs[i])) {
                 passed = false;
-                System.out.println("Failed on input: " + inputs[i]);
+                System.out.println("Failed on input: " + inputs[i] +" in Q2E5a");
                 System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
             }
         }
