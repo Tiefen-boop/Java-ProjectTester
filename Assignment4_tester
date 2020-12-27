@@ -677,9 +677,9 @@ public class Test {
     private static void testQ3E3() {
         boolean passed = true;
         boolean output;
-        BinaryNumber[] inputs = {new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('2'), new BinaryNumber('6'), new BinaryNumber('7')};
-        Object[] inputs2 = {'!', 123, "aa", new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('2'), new BinaryNumber('7')};
-        boolean[] expectedOutputs = {false, false, false, true, false, false, true};
+        BinaryNumber[] inputs = {new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('2'), new BinaryNumber('6'), new BinaryNumber('7'),new BinaryNumber('0')};
+        Object[] inputs2 = {'!', 123, "aa", new BinaryNumber('1'), new BinaryNumber('1'), new BinaryNumber('2'), new BinaryNumber('7'),new BinaryNumber('8')};
+        boolean[] expectedOutputs = {false, false, false, true, false, false, true,false};
         for (int i = 0; i < inputs.length; i++) {
             output = inputs[i].equals(inputs2[i]);
             if (output != expectedOutputs[i]) {
