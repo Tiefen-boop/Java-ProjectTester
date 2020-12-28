@@ -1,163 +1,163 @@
 //version 0.6.1
 import java.util.*;
 public class Test {
-    public static void main(String[] args) {
-        //runAllTests();    //Runs all the tests
-        //testPartA();      //Runs all tests for part A
-        //testPartB();      //Runs all tests for part B
-        //testQ1E0();       //Runs tests for 1.0
-        //testQ1E1a();      //Runs tests for 1.1 depositMoney
-        //testQ1E1b();      //Runs tests for 1.1 withdrawMoney
-        //testQ1E4();       //Runs tests for 1.4
-        //testQ2E5b();      //Runs tests for 2.5b
-    }
-   
-    private static void runAllTests() {
-        testPartA();
-        testPartB();
-    }
+	public static void main(String[] args) {
+		//runAllTests();    //Runs all the tests
+		//testPartA();      //Runs all tests for part A
+		//testPartB();      //Runs all tests for part B
+		//testQ1E0();       //Runs tests for 1.0
+		//testQ1E1a();      //Runs tests for 1.1 depositMoney
+		//testQ1E1b();      //Runs tests for 1.1 withdrawMoney
+		//testQ1E4();       //Runs tests for 1.4
+		//testQ2E5b();      //Runs tests for 2.5b
+	}
 
-    private static void testPartA() {
-        System.out.println("Testing 1.0: ");
-        testQ1E0();
-        System.out.println("Testing 1.1a: ");
-        testQ1E1a();
-        System.out.println("Testing 1.1b: ");
-        testQ1E1b();
-        System.out.println("Testing 1.4: ");
-        testQ1E4();
-    }
+	private static void runAllTests() {
+		testPartA();
+		testPartB();
+	}
 
-    private static void testPartB() {
-        System.out.println("Testing 2.5a: ");
-        testQ2E5b();
-    }
+	private static void testPartA() {
+		System.out.println("Testing 1.0: ");
+		testQ1E0();
+		System.out.println("Testing 1.1a: ");
+		testQ1E1a();
+		System.out.println("Testing 1.1b: ");
+		testQ1E1b();
+		System.out.println("Testing 1.4: ");
+		testQ1E4();
+	}
 
-    private static void testQ1E0() {
-        boolean passed = true;
-        PrimeIterator inputs = new PrimeIterator();
-        String output = inputs.next().toString();
-        String expectedOutput = "2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233";
-        for (int i = 0; i < 50; i++) {
-            output = output + ", " + inputs.next();
-        }
-        if (!output.equals(expectedOutput)) {
-            passed = false;
-            System.out.println("Failed on finding all prime numbers: " +" in Q1E0");
-            System.out.println("Expected output: " + expectedOutput);
-            System.out.println("But output was: " + output);
-        }
-        if (passed)
-            System.out.println("Passed all tests");
-    }
+	private static void testPartB() {
+		System.out.println("Testing 2.5a: ");
+		testQ2E5b();
+	}
 
-    private static void testQ1E1a() {
-        boolean passed = true;
-        BankAccount test = new BankAccount("testQ1E1a", 1, 50);
-        boolean output;
-        int[] inputs = {0, Integer.MAX_VALUE, -1, Integer.MIN_VALUE};
-        boolean[] expectedOutputs = {true, true, false, false};
-        for (int i = 0; i < inputs.length; i++) {
-            output = test.depositMoney(inputs[i]);
-            if (output != expectedOutputs[i]) {
-                passed = false;
-                System.out.println("Failed on input: " + inputs[i] +" in Q1E1a");
-                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
-            }
-        }
-        if (passed)
-            System.out.println("Passed all tests");
-    }
+	private static void testQ1E0() {
+		boolean passed = true;
+		PrimeIterator inputs = new PrimeIterator();
+		String output = inputs.next().toString();
+		String expectedOutput = "2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233";
+		for (int i = 0; i < 50; i++) {
+			output = output + ", " + inputs.next();
+		}
+		if (!output.equals(expectedOutput)) {
+			passed = false;
+			System.out.println("Failed on finding all prime numbers: " +" in Q1E0");
+			System.out.println("Expected output: " + expectedOutput);
+			System.out.println("But output was: " + output);
+		}
+		if (passed)
+			System.out.println("Passed all tests");
+	}
 
-    private static void testQ1E1b() {
-        boolean passed = true;
-        BankAccount test = new BankAccount("testQ1E1b", 1, 50);
-        boolean output;
-        int[] inputs = {0, Integer.MAX_VALUE, -1, Integer.MIN_VALUE};
-        boolean[] expectedOutputs = {true, false, false, false};
-        for (int i = 0; i < inputs.length; i++) {
-            output = test.withdrawMoney(inputs[i]);
-            if (output != expectedOutputs[i]) {
-                passed = false;
-                System.out.println("Failed on input: " + inputs[i] +" in Q1E1b");
-                System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
-            }
-        }
-        if (passed)
-            System.out.println("Passed all tests");
-    }
+	private static void testQ1E1a() {
+		boolean passed = true;
+		BankAccount test = new BankAccount("testQ1E1a", 1, 50);
+		boolean output;
+		int[] inputs = {0, Integer.MAX_VALUE, -1, Integer.MIN_VALUE};
+		boolean[] expectedOutputs = {true, true, false, false};
+		for (int i = 0; i < inputs.length; i++) {
+			output = test.depositMoney(inputs[i]);
+			if (output != expectedOutputs[i]) {
+				passed = false;
+				System.out.println("Failed on input: " + inputs[i] +" in Q1E1a");
+				System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+			}
+		}
+		if (passed)
+			System.out.println("Passed all tests");
+	}
 
-    private static void testQ1E4() {
-        boolean passed = true;
-        Comparator<Integer> c = new IntegerComparator();
-        BinarySearchTree bst;
-        String output;
-        int[][] inputs = {{4,2,6,1,3,5,7,8},
-                {5,2,6,1,4,7,3,8},
-                {2,1,3,4,5,6,7,8},
-                {8,7,6,5,4,3,2,1}};
-        String[] expectedOutputs = {"    1\n  2\n    3\n4\n    5\n  6\n    7\n      8\n",
-                "    1\n  2\n      3\n    4\n5\n  6\n    7\n      8\n",
-                "  1\n2\n  3\n    4\n      5\n        6\n          7\n            8\n",
-                "              1\n            2\n          3\n        4\n      5\n    6\n  7\n8\n"};
-        for (int i = 0; i < inputs.length; i++) {
-            bst = new BinarySearchTree(c);
-            for (int j = 0; j < inputs[i].length; j++)
-                bst.insert(inputs[i][j]);
-            output = bst.toString();
-            if (!output.equals(expectedOutputs[i])) {
-                passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]) +" in Q1E4");
-                System.out.println("Expected output: ");
-                System.out.println(expectedOutputs[i]);
-                System.out.println("But output was: ");
-                System.out.println(output);
-            }
-        }
-        if (passed)
-            System.out.println("Passed all tests");
-    }
-    public static boolean isBalanced(BankAccountsBinarySearchTree treeBalanced) {
-		if(treeBalanced.root.left == null & treeBalanced.root.right == null) {
+	private static void testQ1E1b() {
+		boolean passed = true;
+		BankAccount test = new BankAccount("testQ1E1b", 1, 50);
+		boolean output;
+		int[] inputs = {0, Integer.MAX_VALUE, -1, Integer.MIN_VALUE};
+		boolean[] expectedOutputs = {true, false, false, false};
+		for (int i = 0; i < inputs.length; i++) {
+			output = test.withdrawMoney(inputs[i]);
+			if (output != expectedOutputs[i]) {
+				passed = false;
+				System.out.println("Failed on input: " + inputs[i] +" in Q1E1b");
+				System.out.println("Expected output: " + expectedOutputs[i] + " But output was: " + output);
+			}
+		}
+		if (passed)
+			System.out.println("Passed all tests");
+	}
+
+	private static void testQ1E4() {
+		boolean passed = true;
+		Comparator<Integer> c = new IntegerComparator();
+		BinarySearchTree bst;
+		String output;
+		int[][] inputs = {{4,2,6,1,3,5,7,8},
+				{5,2,6,1,4,7,3,8},
+				{2,1,3,4,5,6,7,8},
+				{8,7,6,5,4,3,2,1}};
+		String[] expectedOutputs = {"    1\n  2\n    3\n4\n    5\n  6\n    7\n      8\n",
+				"    1\n  2\n      3\n    4\n5\n  6\n    7\n      8\n",
+				"  1\n2\n  3\n    4\n      5\n        6\n          7\n            8\n",
+		"              1\n            2\n          3\n        4\n      5\n    6\n  7\n8\n"};
+		for (int i = 0; i < inputs.length; i++) {
+			bst = new BinarySearchTree(c);
+			for (int j = 0; j < inputs[i].length; j++)
+				bst.insert(inputs[i][j]);
+			output = bst.toString();
+			if (!output.equals(expectedOutputs[i])) {
+				passed = false;
+				System.out.println("Failed on input: " + Arrays.toString(inputs[i]) +" in Q1E4");
+				System.out.println("Expected output: ");
+				System.out.println(expectedOutputs[i]);
+				System.out.println("But output was: ");
+				System.out.println(output);
+			}
+		}
+		if (passed)
+			System.out.println("Passed all tests");
+	}
+	public static boolean isBalanced(BankAccountsBinarySearchTree treeBalanced) {
+		if(treeBalanced.isEmpty()) {
 			return true;
 		}
-		else if(treeBalanced.root.left != null & treeBalanced.root.right == null) {
-			return treeBalanced.root.left.height() < 2;
-		}
-		else if(treeBalanced.root.left == null & treeBalanced.root.right != null) {
-			return treeBalanced.root.right.height() < 2;
-		}
 		else {
-			return Math.abs(treeBalanced.root.right.height() - treeBalanced.root.left.height()) < 2;
+			return isBalanced(treeBalanced.root);
 		}
 	}
-    private static void testQ2E5b() {
-        boolean passed = true;
-        String output;
-        BankAccountsBinarySearchTree test;
-        BankAccount[][] inputs = {{new BankAccount("a", 4, 0), new BankAccount("b", 2, 0), new BankAccount("c", 6, 0), new BankAccount("d", 1, 0), new BankAccount("f", 3, 0), new BankAccount("g", 5, 0), new BankAccount("h", 7, 0), new BankAccount("i", 8, 0), new BankAccount("j", 9, 0), new BankAccount("k", 10, 0), new BankAccount("m", 11, 0), new BankAccount("n", 12, 0), new BankAccount("l", 13, 0), new BankAccount("o", 14, 0), new BankAccount("p", 15, 0), new BankAccount("q", 16, 0), new BankAccount("r", 17, 0), new BankAccount("d", 18, 0), new BankAccount("f", 19, 0), new BankAccount("g", 20, 0), new BankAccount("h", 21, 0), new BankAccount("i", 22, 0), new BankAccount("j", 23, 0), new BankAccount("k", 24, 0), new BankAccount("m", 25, 0), new BankAccount("n", 26, 0), new BankAccount("l", 27, 0), new BankAccount("o", 28, 0), new BankAccount("p", 29, 0), new BankAccount("q", 30, 0), new BankAccount("r", 31, 0)},
-                {new BankAccount("a", 4, 0), new BankAccount("b", 2, 0), new BankAccount("c", 6, 0), new BankAccount("d", 1, 0), new BankAccount("f", 3, 0), new BankAccount("g", 5, 0), new BankAccount("h", 7, 0), new BankAccount("i", 8, 0), new BankAccount("j", 9, 0), new BankAccount("k", 10, 0), new BankAccount("m", 11, 0), new BankAccount("n", 12, 0), new BankAccount("l", 13, 0), new BankAccount("o", 14, 0), new BankAccount("p", 15, 0), new BankAccount("q", 16, 0), new BankAccount("r", 17, 0), new BankAccount("d", 18, 0), new BankAccount("f", 19, 0), new BankAccount("g", 20, 0), new BankAccount("h", 21, 0), new BankAccount("i", 22, 0), new BankAccount("j", 23, 0), new BankAccount("k", 24, 0), new BankAccount("m", 25, 0), new BankAccount("n", 26, 0), new BankAccount("l", 27, 0), new BankAccount("o", 28, 0), new BankAccount("p", 29, 0), new BankAccount("q", 30, 0), new BankAccount("r", 31, 0)}};
-        Object[][] inputs2 = {{new AccountComparatorByName()},
-                {new AccountComparatorByNumber()}};
-        /*String[] expectedOutputs = {"      Name: a, AccountNumber: 4\n    Name: b, AccountNumber: 2\n      Name: c, AccountNumber: 6\n  Name: d, AccountNumber: 1\n      Name: f, AccountNumber: 3\n    Name: g, AccountNumber: 5\n      Name: h, AccountNumber: 7\n        Name: i, AccountNumber: 8\nName: j, AccountNumber: 9\n      Name: k, AccountNumber: 10\n    Name: l, AccountNumber: 13\n      Name: m, AccountNumber: 11\n  Name: n, AccountNumber: 12\n      Name: o, AccountNumber: 14\n    Name: p, AccountNumber: 15\n      Name: q, AccountNumber: 16\n        Name: r, AccountNumber: 17\n",
-                "        Name: d, AccountNumber: 1\n      Name: b, AccountNumber: 2\n        Name: f, AccountNumber: 3\n    Name: a, AccountNumber: 4\n        Name: g, AccountNumber: 5\n      Name: c, AccountNumber: 6\n        Name: h, AccountNumber: 7\n  Name: i, AccountNumber: 8\n        Name: j, AccountNumber: 9\n      Name: k, AccountNumber: 10\n        Name: m, AccountNumber: 11\n    Name: n, AccountNumber: 12\n        Name: l, AccountNumber: 13\n      Name: o, AccountNumber: 14\n        Name: p, AccountNumber: 15\nName: q, AccountNumber: 16\n        Name: r, AccountNumber: 17\n      Name: d, AccountNumber: 18\n        Name: f, AccountNumber: 19\n    Name: g, AccountNumber: 20\n        Name: h, AccountNumber: 21\n      Name: i, AccountNumber: 22\n        Name: j, AccountNumber: 23\n  Name: k, AccountNumber: 24\n        Name: m, AccountNumber: 25\n      Name: n, AccountNumber: 26\n        Name: l, AccountNumber: 27\n    Name: o, AccountNumber: 28\n        Name: p, AccountNumber: 29\n      Name: q, AccountNumber: 30\n        Name: r, AccountNumber: 31\n"};*/
-        for (int i = 0; i < inputs.length; i++) {
-            test = new BankAccountsBinarySearchTree((Comparator<BankAccount>)inputs2[i][0]);
-            for (BankAccount acc: inputs[i])
-                test.insert(acc);       
-            test.balance();
-            //output = test.toString();
-            if (!isBalanced(test)) {
-                passed = false;
-                System.out.println("Failed on input: " + Arrays.toString(inputs[i]) + " in Q2E5b");
-               // System.out.println("Expected output: ");
-               // System.out.println(expectedOutputs[i]);
-                System.out.println("tree is not balanced");
-               // System.out.println(" But output was: ");
-                //System.out.println(output);
-            }
-        }
-        if (passed)
-            System.out.println("Passed all tests");
-    }
+	public static boolean isBalanced(BinaryNode<BankAccount> treeBalanced) {
+		if(treeBalanced.left == null & treeBalanced.right == null) {
+			return true;
+		}
+		else if(treeBalanced.left != null & treeBalanced.right == null) {
+			return treeBalanced.left.height() < 2  & isBalanced(treeBalanced.left);
+		}
+		else if(treeBalanced.left == null & treeBalanced.right != null) {
+			return (treeBalanced.right.height() < 2) & isBalanced(treeBalanced.right);
+		}
+		else {
+			return Math.abs(treeBalanced.right.height() - treeBalanced.left.height()) < 2 & isBalanced(treeBalanced.left) & isBalanced(treeBalanced.right) ;
+		}
+	}
+	private static void testQ2E5b() {
+		boolean passed = true;
+		BankAccountsBinarySearchTree test;
+		BankAccount[][] inputs = {{new BankAccount("a", 4, 0), new BankAccount("b", 2, 0), new BankAccount("c", 6, 0), new BankAccount("d", 1, 0), new BankAccount("f", 3, 0), new BankAccount("g", 5, 0), new BankAccount("h", 7, 0), new BankAccount("i", 8, 0), new BankAccount("j", 9, 0), new BankAccount("k", 10, 0), new BankAccount("m", 11, 0), new BankAccount("n", 12, 0), new BankAccount("l", 13, 0), new BankAccount("o", 14, 0), new BankAccount("p", 15, 0), new BankAccount("q", 16, 0), new BankAccount("r", 17, 0), new BankAccount("d", 18, 0), new BankAccount("f", 19, 0), new BankAccount("g", 20, 0), new BankAccount("h", 21, 0), new BankAccount("i", 22, 0), new BankAccount("j", 23, 0), new BankAccount("k", 24, 0), new BankAccount("m", 25, 0), new BankAccount("n", 26, 0), new BankAccount("l", 27, 0), new BankAccount("o", 28, 0), new BankAccount("p", 29, 0), new BankAccount("q", 30, 0), new BankAccount("r", 31, 0)},
+				{new BankAccount("a", 4, 0), new BankAccount("b", 2, 0), new BankAccount("c", 6, 0), new BankAccount("d", 1, 0), new BankAccount("f", 3, 0), new BankAccount("g", 5, 0), new BankAccount("h", 7, 0), new BankAccount("i", 8, 0), new BankAccount("j", 9, 0), new BankAccount("k", 10, 0), new BankAccount("m", 11, 0), new BankAccount("n", 12, 0), new BankAccount("l", 13, 0), new BankAccount("o", 14, 0), new BankAccount("p", 15, 0), new BankAccount("q", 16, 0), new BankAccount("r", 17, 0), new BankAccount("d", 18, 0), new BankAccount("f", 19, 0), new BankAccount("g", 20, 0), new BankAccount("h", 21, 0), new BankAccount("i", 22, 0), new BankAccount("j", 23, 0), new BankAccount("k", 24, 0), new BankAccount("m", 25, 0), new BankAccount("n", 26, 0), new BankAccount("l", 27, 0), new BankAccount("o", 28, 0), new BankAccount("p", 29, 0), new BankAccount("q", 30, 0), new BankAccount("r", 31, 0)}};
+		Object[][] inputs2 = {{new AccountComparatorByName()},
+				{new AccountComparatorByNumber()}};
+		for (int i = 0; i < inputs.length; i++) {
+			test = new BankAccountsBinarySearchTree((Comparator<BankAccount>)inputs2[i][0]);
+			for (BankAccount acc: inputs[i])
+				test.insert(acc);       
+			test.balance();
+			if (!isBalanced(test)) {
+				passed = false;
+				System.out.println("Failed on input: " + Arrays.toString(inputs[i]) + " in Q2E5b");
+				System.out.println("tree is not balanced");
+			}
+		}
+		if (passed)
+			System.out.println("Passed all tests");
+	}
 }
