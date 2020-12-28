@@ -125,39 +125,43 @@ public class Test {
 			return isBalanced(treeBalanced.root);
 		}
 	}
-	public static boolean isBalanced(BinaryNode<BankAccount> treeBalanced) {
-		if(treeBalanced.left == null & treeBalanced.right == null) {
-			return true;
-		}
-		else if(treeBalanced.left != null & treeBalanced.right == null) {
-			return treeBalanced.left.height() < 2  & isBalanced(treeBalanced.left);
-		}
-		else if(treeBalanced.left == null & treeBalanced.right != null) {
-			return (treeBalanced.right.height() < 2) & isBalanced(treeBalanced.right);
-		}
-		else {
-			return Math.abs(treeBalanced.right.height() - treeBalanced.left.height()) < 2 & isBalanced(treeBalanced.left) & isBalanced(treeBalanced.right) ;
-		}
-	}
+	
 	private static void testQ2E5b() {
 		boolean passed = true;
 		BankAccountsBinarySearchTree test;
 		BankAccount[][] inputs = {{new BankAccount("a", 4, 0), new BankAccount("b", 2, 0), new BankAccount("c", 6, 0), new BankAccount("d", 1, 0), new BankAccount("f", 3, 0), new BankAccount("g", 5, 0), new BankAccount("h", 7, 0), new BankAccount("i", 8, 0), new BankAccount("j", 9, 0), new BankAccount("k", 10, 0), new BankAccount("m", 11, 0), new BankAccount("n", 12, 0), new BankAccount("l", 13, 0), new BankAccount("o", 14, 0), new BankAccount("p", 15, 0), new BankAccount("q", 16, 0), new BankAccount("r", 17, 0), new BankAccount("d", 18, 0), new BankAccount("f", 19, 0), new BankAccount("g", 20, 0), new BankAccount("h", 21, 0), new BankAccount("i", 22, 0), new BankAccount("j", 23, 0), new BankAccount("k", 24, 0), new BankAccount("m", 25, 0), new BankAccount("n", 26, 0), new BankAccount("l", 27, 0), new BankAccount("o", 28, 0), new BankAccount("p", 29, 0), new BankAccount("q", 30, 0), new BankAccount("r", 31, 0)},
 				{new BankAccount("a", 4, 0), new BankAccount("b", 2, 0), new BankAccount("c", 6, 0), new BankAccount("d", 1, 0), new BankAccount("f", 3, 0), new BankAccount("g", 5, 0), new BankAccount("h", 7, 0), new BankAccount("i", 8, 0), new BankAccount("j", 9, 0), new BankAccount("k", 10, 0), new BankAccount("m", 11, 0), new BankAccount("n", 12, 0), new BankAccount("l", 13, 0), new BankAccount("o", 14, 0), new BankAccount("p", 15, 0), new BankAccount("q", 16, 0), new BankAccount("r", 17, 0), new BankAccount("d", 18, 0), new BankAccount("f", 19, 0), new BankAccount("g", 20, 0), new BankAccount("h", 21, 0), new BankAccount("i", 22, 0), new BankAccount("j", 23, 0), new BankAccount("k", 24, 0), new BankAccount("m", 25, 0), new BankAccount("n", 26, 0), new BankAccount("l", 27, 0), new BankAccount("o", 28, 0), new BankAccount("p", 29, 0), new BankAccount("q", 30, 0), new BankAccount("r", 31, 0)}};
-		Object[][] inputs2 = {{new AccountComparatorByName()},
-				{new AccountComparatorByNumber()}};
+		Object[] inputs2 = {new AccountComparatorByName(),
+				new AccountComparatorByNumber()};
 		for (int i = 0; i < inputs.length; i++) {
-			test = new BankAccountsBinarySearchTree((Comparator<BankAccount>)inputs2[i][0]);
+			test = new BankAccountsBinarySearchTree((Comparator<BankAccount>)inputs2[i]);
 			for (BankAccount acc: inputs[i])
 				test.insert(acc);       
 			test.balance();
 			if (!isBalanced(test)) {
 				passed = false;
-				System.out.println("Failed on input: " + Arrays.toString(inputs[i]) + " in Q2E5b");
-				System.out.println("tree is not balanced");
+				System.out.println("Failed in Q2E5b: ");
+				System.out.println("Insertion sequence: " + Arrays.toString(inputs[i]));
+				System.out.println("Comparator: " + inputs2[i].getClass().getCanonicalName());
+				System.out.println("Tree is not balanced");
 			}
 		}
 		if (passed)
 			System.out.println("Passed all tests");
+	}
+	
+	private static boolean isBalanced(BinaryNode<BankAccount> treeBalanced) {
+		if(treeBalanced.left == null & treeBalanced.right == null) {
+			return true;
+		}
+		else if(treeBalanced.left != null & treeBalanced.right == null) {
+			return treeBalanced.left.height() == 0;
+		}
+		else if(treeBalanced.left == null & treeBalanced.right != null) {
+			return treeBalanced.right.height() == 0;
+		}
+		else {
+			return Math.abs(treeBalanced.right.height() - treeBalanced.left.height()) < 2 && isBalanced(treeBalanced.left) && isBalanced(treeBalanced.right);
+		}
 	}
 }
