@@ -172,10 +172,10 @@ public class Test {
 			return true;
 		}
 		else if(treeBalanced.left != null & treeBalanced.right == null) {
-			return treeBalanced.left.height() == 0;
+			return treeBalanced.left.height() < 2;
 		}
 		else if(treeBalanced.left == null & treeBalanced.right != null) {
-			return treeBalanced.right.height() == 0;
+			return treeBalanced.right.height() < 2;
 		}
 		else {
 			return Math.abs(treeBalanced.right.height() - treeBalanced.left.height()) < 2 && isBalanced(treeBalanced.left) && isBalanced(treeBalanced.right);
