@@ -1,4 +1,4 @@
-//version 0.6.2
+//version 0.7.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -10,6 +10,8 @@ public class Test {
         //testQ1E1b();      //Runs tests for 1.1 withdrawMoney
         //testQ1E4();       //Runs tests for 1.4
         //testQ2E5b();      //Runs tests for 2.5 balance
+        //testQ2E5c();      //Runs tests for 2.5 ThresholdBankAccountsIterator
+        //testQ2E6a();      //Runs tests for 2.6a
     }
 
     private static void runAllTests() {
@@ -31,6 +33,8 @@ public class Test {
     private static void testPartB() {
         System.out.println("Testing 2.5b: ");
         testQ2E5b();
+        System.out.println("Testing 2.5c: ");
+        testQ2E5c();
         System.out.println("Testing 2.6a: ");
         testQ2E6a();
     }
@@ -177,6 +181,61 @@ public class Test {
         }
     }
 
+    private static void testQ2E5c() {
+        int treshhold = 5;
+        boolean passed = true;
+        BankAccountsBinarySearchTree test;
+        Comparator<BankAccount> comparator = new AccountComparatorByNumber();
+        List<BankAccount> lst1 = new DynamicArray<BankAccount>();
+        List<BankAccount> lst2 = new DynamicArray<BankAccount>();
+        List<BankAccount> lst3 = new DynamicArray<BankAccount>();
+        BankAccount[][] inputs = {createBank(treshhold,lst1),createBank(treshhold,lst2),createBank(treshhold,lst3)};
+        Object[] expectedOutputs = {lst1,lst2,lst3};
+        for (int i = 0; i < inputs.length; i++) {
+            test = new BankAccountsBinarySearchTree(comparator);
+            for (BankAccount acc: inputs[i])
+                test.insert(acc);
+            List<BankAccount> lst = new DynamicArray<BankAccount>();
+            Iterator<BankAccount> iter = new ThresholdBankAccountsIterator(test,treshhold);
+            while(iter.hasNext()) {
+                lst.add(iter.next());
+            }
+            if(!isEquals(lst1,(List<BankAccount>) expectedOutputs[i])) {
+                passed = false;
+                System.out.println("Failed on input: " + Arrays.toString(inputs[i]) + " in Q2E5c");
+                System.out.println("Expected output: " + expectedOutputs[i] + "But output was: " + lst);
+            }
+
+        }
+        if(passed) {
+            System.out.println("Passed all tests");
+        }
+    }
+
+    private static BankAccount[] createBank(int treshhold,List<BankAccount> lst) {
+        BankAccount[] bank = new BankAccount[30];
+        for(int i = 0;i < bank.length;i++) {
+            bank[i] = new BankAccount("a",i+1,(int)(Math.random() + 20));
+            if(bank[i].getBalance() >= treshhold) {
+                lst.add(bank[i]);
+            }
+        }
+        return bank;
+    }
+
+    private static boolean isEquals(List<BankAccount> lst1,List<BankAccount> lst2) {
+        if(lst1.size() != lst2.size()) {
+            return false;
+        }
+        Iterator<BankAccount> iter1 = lst1.iterator();
+        Iterator<BankAccount> iter2 = lst2.iterator();
+        while(iter1.hasNext()) {
+            if(!iter1.next().toString().equals(iter2.next().toString())) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     private static void testQ2E6a() {
         boolean passed = true;
