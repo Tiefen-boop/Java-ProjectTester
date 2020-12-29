@@ -1,4 +1,4 @@
-//version 0.7.0
+//version 0.8.0
 import java.util.*;
 public class Test {
     public static void main(String[] args) {
@@ -261,6 +261,7 @@ public class Test {
             System.out.println("Passed all tests");
         }
     }
+    
     private static void testQ2E6b1() {
 		boolean passed = true;
 		boolean output;
@@ -283,6 +284,7 @@ public class Test {
 			System.out.println("Passed all tests");
 		}
 	}
+	
 	private static void testQ2E6b2() {
 		boolean passed = true;
 		boolean output;
