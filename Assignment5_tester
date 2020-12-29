@@ -31,6 +31,8 @@ public class Test {
 	private static void testPartB() {
 		System.out.println("Testing 2.5a: ");
 		testQ2E5b();
+		System.out.println("Testing 2.6a: ");
+		testQ2E6a();
 	}
 
 	private static void testQ1E0() {
@@ -172,13 +174,34 @@ public class Test {
 			return true;
 		}
 		else if(treeBalanced.left != null & treeBalanced.right == null) {
-			return treeBalanced.left.height() < 2;
+			return treeBalanced.left.height() == 0;
 		}
 		else if(treeBalanced.left == null & treeBalanced.right != null) {
-			return treeBalanced.right.height() < 2;
+			return treeBalanced.right.height() == 0;
 		}
 		else {
 			return Math.abs(treeBalanced.right.height() - treeBalanced.left.height()) < 2 && isBalanced(treeBalanced.left) && isBalanced(treeBalanced.right);
+		}
+	}
+	private static void testQ2E6a() {
+		Bank test = new Bank();
+		boolean passed = true;
+		BankAccount[] inputs = {new BankAccount("a", 4, 0), new BankAccount("b", 2, 0), new BankAccount("c", 6, 0), new BankAccount("c", 1, 0), new BankAccount("f", 3, 0), new BankAccount("g", 5, 0), new BankAccount("h", 7, 0), new BankAccount("i", 8, 0), new BankAccount("a", 9, 0), new BankAccount("k", 10, 0), new BankAccount("m", 11, 0), new BankAccount("n", 12, 0), new BankAccount("l", 13, 0), new BankAccount("o", 14, 0), new BankAccount("p", 15, 0), new BankAccount("q", 16, 0), new BankAccount("r", 17, 0), new BankAccount("d", 18, 0), new BankAccount("f", 19, 0), new BankAccount("y", 5, 0), new BankAccount("y", 21, 0), new BankAccount("w", 22, 0), new BankAccount("j", 23, 0), new BankAccount("k", 24, 0), new BankAccount("m", 25, 0), new BankAccount("n", 26, 0), new BankAccount("d", 27, 0), new BankAccount("o", 28, 0), new BankAccount("p", 29, 0), new BankAccount("q", 30, 0), new BankAccount("z", 31, 0)};
+		boolean[] ExpectedOutputs = {true,true,true,false,true,true,true,true,false,true,true,true,true,true,true,true,true,true,false,false,true,true,true,false,false,false,false,false,false,false,true};
+		for (int i = 0; i < inputs.length; i++) {
+			boolean isAdded = test.add(inputs[i]);
+			if(isAdded != ExpectedOutputs[i]) {
+				passed = false;
+				System.out.println("Failed in Q2E6a: ");
+				System.out.println("Failed on input: " + inputs[i] +" in Q2E6a");
+				System.out.println("Expected output: ");
+				System.out.println(ExpectedOutputs[i]);
+				System.out.println("But output was: ");
+				System.out.println(isAdded);
+			}
+		}
+		if(passed) {
+			System.out.println("Passed all tests");
 		}
 	}
 }
