@@ -136,7 +136,12 @@ public class Test {
 		for (int i = 0; i < inputs.length; i++) {
 			test = new BankAccountsBinarySearchTree((Comparator<BankAccount>)inputs2[i]);
 			for (BankAccount acc: inputs[i])
-				test.insert(acc);       
+				test.insert(acc);   
+			List<BankAccount> lst = new DynamicArray();
+			Iterator<BankAccount> iter = test.iterator();
+			while(iter.hasNext()) {
+				lst.add(iter.next());
+			}
 			test.balance();
 			if (!isBalanced(test)) {
 				passed = false;
@@ -145,11 +150,23 @@ public class Test {
 				System.out.println("Comparator: " + inputs2[i].getClass().getCanonicalName());
 				System.out.println("Tree is not balanced");
 			}
+			else {
+				List<BankAccount> lst1 = new DynamicArray();
+				Iterator<BankAccount> iter1 = test.iterator();
+				while(iter1.hasNext()) {
+					lst1.add(iter1.next());
+				}
+				if(!lst1.equals(lst)) {
+					passed = false;
+					System.out.println("Failed in Q2E5b: ");
+					System.out.println("inOrder scan is not the same as the unbalanced tree");
+				}
+			}
 		}
 		if (passed)
 			System.out.println("Passed all tests");
 	}
-	
+
 	private static boolean isBalanced(BinaryNode<BankAccount> treeBalanced) {
 		if(treeBalanced.left == null & treeBalanced.right == null) {
 			return true;
