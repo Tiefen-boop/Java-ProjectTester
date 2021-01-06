@@ -262,7 +262,7 @@ public class Test {
 			if (output != ExpectedOutputs[i]) {
 				passed = false;
 				System.out.println("Failed on input: " + inputs[i] + " in Q2E6a");
-				System.out.println("Expected output: " + ExpectedOutputs[i] + "But output was: " + output);
+				System.out.println("Expected output: " + ExpectedOutputs[i] + " But output was: " + output);
 			}
 		}
 		if (passed) {
