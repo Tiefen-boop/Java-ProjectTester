@@ -353,6 +353,13 @@ public class Test {
 
 	private static void testQ2E6c() {
 		boolean passed = true;
+		Bank b=new Bank();
+		b.add(new BankAccount("check",3532,1));
+		if(b.depositMoney(100, 3532)&b.lookUp(3532).getBalance()-100!=1) {
+			System.out.println("Failed on input: BankAccount('check',3532,1) for depositMoney(3532,100) in Q2E6c");
+			System.out.println("Expected output: 101 But output was: 201");
+			passed=false;
+		}
 		boolean output;
 		int[] deposit = {(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20,0,(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20};
 		Bank[] test = new Bank[deposit.length];
@@ -387,6 +394,13 @@ public class Test {
 
 	private static void testQ2E6d() {
 		boolean passed = true;
+		Bank b=new Bank();
+		b.add(new BankAccount("check",3532,500));
+		if(b.withdrawMoney(100, 3532)&b.lookUp(3532).getBalance()+100!=500) {
+			System.out.println("Failed on input: BankAccount('check',3532,500) for withdrawMoney(3532,100) in Q2E6c");
+			System.out.println("Expected output: 400 But output was: "+b.lookUp(3532).getBalance());
+			passed = false;
+		}
 		boolean output;
 		int[] withdraw = {(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20,0,(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20};
 		Bank[] test = new Bank[withdraw.length];
