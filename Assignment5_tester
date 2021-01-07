@@ -1,4 +1,4 @@
-//version 1.1.1
+//version 1.1.2
 import java.util.*;
 public class Test {
 	public static void main(String[] args) {
@@ -16,8 +16,9 @@ public class Test {
 		//testQ2E6b1();     //Runs tests for 2.6b1
 		//testQ2E6b2();     //Runs tests for 2.6b2
 		//testQ2E6c();     //Runs tests for 2.6c
-		//testQ2E6d();     //Runs tests for 2.6d
-				
+		//testQ2E6c();     //Runs tests for 2.6c
+		//testQ2E6d();     //Runs tests for 2.6d	
+		
 	}
 
 	private static void runAllTests() {
@@ -205,7 +206,7 @@ public class Test {
 	}
 
 	private static void testQ2E5c() {
-		int[] treshhold = {(int) (Math.random() * 20) - 20,0,(int) (Math.random() * 20) - 20};
+		int[] treshhold = {(int) (Math.random() * 40) - 20,0,(int) (Math.random() * 40) - 20};
 		boolean passed = true;
 		BankAccountsBinarySearchTree test;
 		Comparator<BankAccount> comparator = new AccountComparatorByNumber();
@@ -262,7 +263,7 @@ public class Test {
 			if (output != ExpectedOutputs[i]) {
 				passed = false;
 				System.out.println("Failed on input: " + inputs[i] + " in Q2E6a");
-				System.out.println("Expected output: " + ExpectedOutputs[i] + " But output was: " + output);
+				System.out.println("Expected output: " + ExpectedOutputs[i] + "But output was: " + output);
 			}
 		}
 		if (passed) {
@@ -340,7 +341,7 @@ public class Test {
 	private static Bank createBankSystemD(boolean[] outputs, int[] inputs, int deposit) {
 		Bank test = new Bank();
 		char c = 'a';
-		for (int i = 0; i < 25; i++, c++) {
+		for (int i = 0; i < 5; i++, c++) {
 			BankAccount add = new BankAccount("" + c, i + 1, (int) (Math.random() * 20));
 			test.add(add);
 			inputs[i] = i + 1;
@@ -354,10 +355,10 @@ public class Test {
 	private static void testQ2E6c() {
 		boolean passed = true;
 		boolean output;
-		int[] deposit = {(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20,0,(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20};
+		int[] deposit = {(int) (Math.random() * 40) - 20,(int) (Math.random() * 40) - 20,0,(int) (Math.random() * 40) - 20,(int) (Math.random() * 40) - 20};
 		Bank[] test = new Bank[deposit.length];
-		int[] inputs = new int[25];
-		boolean[] expectedOutputs = new boolean[25];
+		int[] inputs = new int[5];
+		boolean[] expectedOutputs = new boolean[5];
 		for (int i = 0; i < test.length; i++) {
 			test[i] = createBankSystemD(expectedOutputs, inputs, deposit[i]);
 			output = test[i].depositMoney(deposit[i], inputs[i]);
@@ -374,13 +375,14 @@ public class Test {
 	private static Bank createBankSystemW(boolean[] outputs, int[] inputs, int withdraw) {
 		Bank test = new Bank();
 		char c = 'a';
-		for (int i = 0; i < 25; i++, c++) {
+		for (int i = 0; i < 5; i++, c++) {
 			BankAccount add = new BankAccount("" + c, i + 1, (int) (Math.random() * 20));
 			test.add(add);
 			inputs[i] = i + 1;
 			outputs[i] = add.withdrawMoney(withdraw);
-			if (outputs[i])
+			if (outputs[i]) {
 				add.depositMoney(withdraw);
+			}
 		}
 		return test;
 	}
@@ -388,13 +390,13 @@ public class Test {
 	private static void testQ2E6d() {
 		boolean passed = true;
 		boolean output;
-		int[] withdraw = {(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20,0,(int) (Math.random() * 20) - 20,(int) (Math.random() * 20) - 20};
+		int[] withdraw = {(int) (Math.random() * 40) - 20,(int) (Math.random() * 40) - 20,0,(int) (Math.random() * 40) - 20,(int) (Math.random() * 40) - 20};
 		Bank[] test = new Bank[withdraw.length];
-		int[] inputs = new int[25];
-		boolean[] expectedOutputs = new boolean[25];
+		int[] inputs = new int[5];
+		boolean[] expectedOutputs = new boolean[5];
 		for (int i = 0; i < test.length; i++) {
 			test[i] = createBankSystemW(expectedOutputs, inputs, withdraw[i]);
-			output = test[i].depositMoney(withdraw[i], inputs[i]);
+			output = test[i].withdrawMoney(withdraw[i], inputs[i]);
 			if (output != expectedOutputs[i]) {
 				passed = false;
 				System.out.println("Failed on input: " + inputs[i] + " in Q2E6d");
